@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
+import setLocalStorage from '../helpers/LocalStorage';
 
 function Login() {
   const {
@@ -13,8 +14,7 @@ function Login() {
 
   const handleValidate = () => (
     email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) && password.length > num
-      ? setDisabled(false) : setDisabled(true)
-  );
+      ? setDisabled(false) : setDisabled(true));
 
   return (
     <>
@@ -38,7 +38,11 @@ function Login() {
           disabled={ disabled }
           type="submit"
           data-testid="login-submit-btn"
-          onClick={ handleValidate() }
+          onClick={ () => {
+            handleValidate();
+            setLocalStorage('mealsToken', 1);
+            setLocalStorage('cocktailsToken', 1);
+          } }
         >
           Enter
         </button>
