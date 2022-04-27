@@ -14,6 +14,7 @@ import ExploreFoodNationalities from './pages/ExploreFoodsNationalities';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -21,6 +22,12 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route
+            path="/"
+            component={ Login }
+            exact
+          />      
+    
+           <Route
             path="/foods"
             component={ FoodPage }
             exact
@@ -88,7 +95,5 @@ function App() {
         </Switch>
       </BrowserRouter>
     </Provider>
-  );
-}
 
 export default App;
