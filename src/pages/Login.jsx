@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import AppContext from '../context/AppContext';
+import Context from '../Context/Context';
 /* import setLocalStorage from '../helpers/LocalStorage'; */
 
 function Login() {
@@ -7,7 +7,7 @@ function Login() {
     setEmail,
     setPassword,
     email,
-    password } = useContext(AppContext);
+    password } = useContext(Context);
   const num = 6;
 
   function btnEnter() {
