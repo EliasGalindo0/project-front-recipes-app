@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FoodPage from './pages/FoodsPage';
-import Provider from './Context/Provider';
+import Provider from './context/Provider';
 import DrinksPage from './pages/DrinksPage';
 import Explore from './pages/Explore';
 import ExploreFoods from './pages/ExploreFoods';
@@ -25,9 +25,9 @@ function App() {
             path="/"
             component={ Login }
             exact
-          />      
-    
-           <Route
+          />
+
+          <Route
             path="/foods"
             component={ FoodPage }
             exact
@@ -95,5 +95,7 @@ function App() {
         </Switch>
       </BrowserRouter>
     </Provider>
+  );
+}
 
 export default App;
