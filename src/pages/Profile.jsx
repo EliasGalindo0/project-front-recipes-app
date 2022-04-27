@@ -3,9 +3,7 @@ import Header from '../components/Header';
 
 function Profile() {
   return (
-    <>
-      <Header showIcon={ false } titleHeader="Profile" />
-    </>
+    <Header showIcon={ false } titleHeader="Profile" />
   );
 }
 

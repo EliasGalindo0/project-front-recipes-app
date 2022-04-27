@@ -14,12 +14,19 @@ import ExploreFoodNationalities from './pages/ExploreFoodsNationalities';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
+import Login from './pages/Login';
 
 function App() {
   return (
     <Provider>
       <BrowserRouter>
         <Switch>
+          <Route
+            path="/"
+            component={ Login }
+            exact
+          />
+
           <Route
             path="/foods"
             component={ FoodPage }

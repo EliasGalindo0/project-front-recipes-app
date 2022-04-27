@@ -3,9 +3,7 @@ import Header from '../components/Header';
 
 function DrinksPage() {
   return (
-    <>
-      <Header showIcon titleHeader="Drinks" />
-    </>
+    <Header showIcon titleHeader="Drinks" />
   );
 }
 
