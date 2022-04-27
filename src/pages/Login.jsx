@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import Context from '../Context/Context';
-/* import setLocalStorage from '../helpers/LocalStorage'; */
 
 function Login() {
   const {
