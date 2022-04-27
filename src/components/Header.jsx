@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import Context from '../Context/Context';
@@ -20,65 +20,62 @@ function Header({ showIcon, titleHeader }) {
     getFirtLetterAPIDrink,
   } = useContext(Context);
 
-  const ingredientAPIFood = async () => {
-    const data = await getIngredienteAPIFood(valueInput);
-    setListFood(data);
-  };
-
-  const nameAPIFood = async () => {
-    const data = await getNameAPIFood(valueInput);
-    setListFood(data);
-  };
-
-  const firstAPIFood = async () => {
-    if (valueInput.length === 1) {
-      const data = await getFirtLetterAPIFood(valueInput);
+  const APIRequestFirst = async (value, func) => {
+    if (value.length === 1) {
+      const data = await func(value);
       setListFood(data);
     } else {
       global.alert('Your search must have only 1 (one) character');
     }
   };
 
-  const ingredientAPIDrink = async () => {
-    const data = await getIngredienteAPIDrink(valueInput);
+  const APIRequest = async (value, func) => {
+    const data = await func(value);
     setListFood(data);
-  };
-
-  const nameAPIDrink = async () => {
-    const data = await getNameAPIDrink(valueInput);
-    setListFood(data);
-  };
-
-  const firstAPIDrink = async () => {
-    if (valueInput.length === 1) {
-      const data = await getFirtLetterAPIDrink(valueInput);
-      setListFood(data);
-    } else {
-      global.alert('Your search must have only 1 (one) character');
-    }
   };
 
   const filterBtnRadioFood = () => {
-    if (filterRadio === 'ingredient') {
-      ingredientAPIFood();
-    }
-    if (filterRadio === 'name') {
-      nameAPIFood();
-    }
-    if (filterRadio === 'firstLetter') {
-      firstAPIFood();
+    switch (filterRadio) {
+    case 'ingredient':
+      APIRequest(valueInput, getIngredienteAPIFood);
+      break;
+    case 'name':
+      APIRequest(valueInput, getNameAPIFood);
+      break;
+    case 'firstLetter':
+      APIRequestFirst(valueInput, getFirtLetterAPIFood);
+      break;
+    default:
+      break;
     }
   };
 
   const filterBtnRadioDrink = () => {
-    if (filterRadio === 'ingredient') {
-      ingredientAPIDrink();
+    switch (filterRadio) {
+    case 'ingredient':
+      APIRequest(valueInput, getIngredienteAPIDrink);
+      break;
+    case 'name':
+      APIRequest(valueInput, getNameAPIDrink);
+      break;
+    case 'firstLetter':
+      APIRequestFirst(valueInput, getFirtLetterAPIDrink);
+      break;
+    default:
+      break;
     }
-    if (filterRadio === 'name') {
-      nameAPIDrink();
-    }
-    if (filterRadio === 'firstLetter') {
-      firstAPIDrink();
+  };
+
+  const searchBtn = () => {
+    switch (titleHeader) {
+    case 'Foods':
+      filterBtnRadioFood();
+      break;
+    case 'Drinks':
+      filterBtnRadioDrink();
+      break;
+    default:
+      break;
     }
   };
 
@@ -151,7 +148,7 @@ function Header({ showIcon, titleHeader }) {
           <button
             data-testid="exec-search-btn"
             type="button"
-            onClick={ titleHeader === 'Foods' ? filterBtnRadioFood : filterBtnRadioDrink }
+            onClick={ searchBtn }
           >
             Search
           </button>

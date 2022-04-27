@@ -5,16 +5,18 @@ function Login() {
   const {
     setEmail,
     setPassword,
-    setDisabled,
     email,
-    password,
-    disabled } = useContext(Context);
+    password } = useContext(Context);
   const num = 6;
 
-  const handleValidate = () => (
-    email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) && password.length > num
-      ? setDisabled(false) : setDisabled(true)
-  );
+  function btnEnter() {
+    localStorage.setItem('mealsToken', '1');
+    localStorage.setItem('cocktailsToken', '1');
+  }
+
+  const validateEmail = () => (email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/));
+
+  const validatePassword = () => password.length > num;
 
   return (
     <>
@@ -35,10 +37,10 @@ function Login() {
         />
         <br />
         <button
-          disabled={ disabled }
+          disabled={ !(validateEmail() && validatePassword()) }
           type="submit"
           data-testid="login-submit-btn"
-          onClick={ handleValidate() }
+          onClick={ btnEnter }
         >
           Enter
         </button>
