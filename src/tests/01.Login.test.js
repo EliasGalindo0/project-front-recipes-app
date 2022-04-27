@@ -6,16 +6,21 @@ import renderWithRouter from './renderWithRouter';
 
 const VALID_EMAIL = 'igor@gmail.com';
 const TESTID_EMAIL = 'email-input';
-const VALID_PASSWORD = '01234567';
+const VALID_PASSWORD = '1234567';
+const INVALID_EMAIL = 'igorgmail.com';
+const INVALID_PASSWORD = '123456';
+const INVALID_EMAIL_2 = '@gmail@com';
+const TESTID_BTN = 'login-submit-btn';
+const TESTID_PASSWORD = 'password-input';
 
 describe('Test page Login', () => {
   it('Requisito 02. Verifica se os elementos estão na tela', () => {
     renderWithRouter(<App />);
     const email = screen.getByTestId(TESTID_EMAIL);
     expect(email).toBeInTheDocument();
-    const senha = screen.getByTestId('password-input');
+    const senha = screen.getByTestId(TESTID_PASSWORD);
     expect(senha).toBeInTheDocument();
-    const enter = screen.getByTestId('login-submit-btn');
+    const enter = screen.getByTestId(TESTID_BTN);
     expect(enter).toBeInTheDocument();
   });
 
@@ -29,5 +34,47 @@ describe('Test page Login', () => {
     renderWithRouter(<App />);
     userEvent.type(screen.getByRole('textbox'), VALID_PASSWORD);
     expect(screen.getByRole('textbox')).toHaveValue(VALID_PASSWORD);
+  });
+
+  it('Requisito 05. Verifica validação do formulario', () => {
+    renderWithRouter(<App />);
+    const email = screen.getByTestId(TESTID_EMAIL);
+    const senha = screen.getByTestId(TESTID_PASSWORD);
+
+    expect(screen.getByTestId(TESTID_BTN)).toBeDisabled();
+
+    userEvent.type(email, INVALID_EMAIL);
+    userEvent.type(senha, VALID_PASSWORD);
+    expect(screen.getByTestId(TESTID_BTN)).toBeDisabled();
+
+    userEvent.type(email, VALID_EMAIL);
+    userEvent.type(senha, INVALID_PASSWORD);
+    expect(screen.getByTestId(TESTID_BTN)).toBeDisabled();
+
+    userEvent.type(email, INVALID_EMAIL_2);
+    userEvent.type(senha, INVALID_PASSWORD);
+    expect(screen.getByTestId(TESTID_BTN)).toBeDisabled();
+
+    userEvent.type(email, VALID_EMAIL);
+    userEvent.type(senha, VALID_PASSWORD);
+    expect(screen.getByTestId(TESTID_BTN)).toBeEnabled();
+  });
+
+  it('Requisito 06. Verifica se os tokens estão salvos no localstorage', () => {
+    renderWithRouter(<App />);
+
+    const email = screen.getByTestId(TESTID_EMAIL);
+    const senha = screen.getByTestId(TESTID_PASSWORD);
+
+    userEvent.type(email, VALID_EMAIL);
+    userEvent.type(senha, VALID_PASSWORD);
+    expect(screen.getByTestId(TESTID_BTN)).toBeEnabled();
+
+    userEvent.click(screen.getByTestId(TESTID_BTN));
+    const token = localStorage.getItem('mealsToken');
+    const token2 = localStorage.getItem('cocktailsToken');
+
+    expect(token).toBe('1');
+    expect(token2).toBe('1');
   });
 });
