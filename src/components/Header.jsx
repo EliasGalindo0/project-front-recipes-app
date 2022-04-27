@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
-import Context from '../context/Context';
+import Context from '../Context/Context';
 
 function Header({ showIcon, titleHeader }) {
   const [search, setSearch] = useState(false);

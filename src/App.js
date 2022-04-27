@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FoodPage from './pages/FoodsPage';
-import Provider from './context/Provider';
+import Provider from './Context/Provider';
 import DrinksPage from './pages/DrinksPage';
 import Explore from './pages/Explore';
 import ExploreFoods from './pages/ExploreFoods';
