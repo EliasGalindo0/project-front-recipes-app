@@ -1,15 +1,15 @@
 import React from 'react';
 import Header from '../components/Header';
-// import MainContent from '../components/MainContent';
+import ShowList from '../components/ShowList';
 
-function MainPage() {
+function Foods() {
   return (
     <>
-      <Header />
+      <Header showIcon titleHeader="Foods" />
 
-      {/* <MainContent /> */}
+      <ShowList />
     </>
   );
 }
 
-export default MainPage;
+export default Foods;

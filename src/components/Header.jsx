@@ -4,7 +4,7 @@ import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import Context from '../Context/Context';
 
-function Header() {
+function Header({ showIcon, titleHeader }) {
   const [search, setSearch] = useState(false);
   const [valueInput, setValueInput] = useState('');
   const [filterRadio, serFilterRadio] = useState('');
@@ -14,6 +14,9 @@ function Header() {
     getNameAPIFood,
     getFirtLetterAPIFood,
     setListFood,
+    getIngredienteAPIDrink,
+    getNameAPIDrink,
+    getFirtLetterAPIDrink,
   } = useContext(Context);
 
   const ingredientAPIFood = async () => {
@@ -35,19 +38,46 @@ function Header() {
     }
   };
 
-  const filterBtnRadio = () => {
-    switch (filterRadio) {
-    case 'ingredient':
+  const ingredientAPIDrink = async () => {
+    const data = await getIngredienteAPIDrink(valueInput);
+    setListFood(data);
+  };
+
+  const nameAPIDrink = async () => {
+    const data = await getNameAPIDrink(valueInput);
+    setListFood(data);
+  };
+
+  const firstAPIDrink = async () => {
+    if (valueInput.length === 1) {
+      const data = await getFirtLetterAPIDrink(valueInput);
+      setListFood(data);
+    } else {
+      global.alert('Your search must have only 1 (one) character');
+    }
+  };
+
+  const filterBtnRadioFood = () => {
+    if (filterRadio === 'ingredient') {
       ingredientAPIFood();
-      break;
-    case 'name':
+    }
+    if (filterRadio === 'name') {
       nameAPIFood();
-      break;
-    case 'firstLetter':
+    }
+    if (filterRadio === 'firstLetter') {
       firstAPIFood();
-      break;
-    default:
-      console.log('Nenhuma função foi chamada');
+    }
+  };
+
+  const filterBtnRadioDrink = () => {
+    if (filterRadio === 'ingredient') {
+      ingredientAPIDrink();
+    }
+    if (filterRadio === 'name') {
+      nameAPIDrink();
+    }
+    if (filterRadio === 'firstLetter') {
+      firstAPIDrink();
     }
   };
 
@@ -60,15 +90,17 @@ function Header() {
         <img src={ profileIcon } alt="ícone" />
       </Link>
 
-      <h2 data-testid="page-title">Food</h2>
+      <h2 data-testid="page-title">{ titleHeader }</h2>
 
-      <button
-        data-testid="search-top-btn"
-        type="button"
-        onClick={ () => { setSearch((a) => !a); } }
-      >
-        <img src={ searchIcon } alt="explore" />
-      </button>
+      { showIcon ? (
+        <button
+          data-testid="search-top-btn"
+          type="button"
+          onClick={ () => { setSearch((a) => !a); } }
+        >
+          <img src={ searchIcon } alt="explore" />
+        </button>
+      ) : undefined }
 
       { search ? (
         <div
@@ -118,10 +150,9 @@ function Header() {
           <button
             data-testid="exec-search-btn"
             type="button"
-            onClick={ filterBtnRadio }
+            onClick={ titleHeader === 'Foods' ? filterBtnRadioFood : filterBtnRadioDrink }
           >
             Search
-
           </button>
         </div>
       ) : undefined}
