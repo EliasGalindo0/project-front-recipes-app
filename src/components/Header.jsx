@@ -1,5 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import PropTypes from 'prop-types';
+>>>>>>> fe4a331ef5106a78723f253a80288b103a799cff
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import Context from '../Context/Context';
@@ -160,4 +164,12 @@ function Header({ showIcon, titleHeader }) {
   );
 }
 
+<<<<<<< HEAD
+=======
+Header.propTypes = {
+  showIcon: PropTypes.bool.isRequired,
+  titleHeader: PropTypes.string.isRequired,
+};
+
+>>>>>>> fe4a331ef5106a78723f253a80288b103a799cff
 export default Header;
