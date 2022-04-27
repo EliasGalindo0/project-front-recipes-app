@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
-import Context from '../Context/Context';
+import Context from '../context/Context';
 
 function Header({ showIcon, titleHeader }) {
   const [search, setSearch] = useState(false);
@@ -159,5 +160,10 @@ function Header({ showIcon, titleHeader }) {
     </header>
   );
 }
+
+Header.propTypes = {
+  showIcon: PropTypes.bool.isRequired,
+  titleHeader: PropTypes.string.isRequired,
+};
 
 export default Header;

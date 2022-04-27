@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import AppContext from '../context/AppContext';
+import Context from '../context/Context';
 
 function Login() {
   const {
@@ -8,7 +8,7 @@ function Login() {
     setDisabled,
     email,
     password,
-    disabled } = useContext(AppContext);
+    disabled } = useContext(Context);
   const num = 6;
 
   const handleValidate = () => (
@@ -38,7 +38,7 @@ function Login() {
           disabled={ disabled }
           type="submit"
           data-testid="login-submit-btn"
-          onClick={ handleValidate() }
+          onClick={ handleValidate }
         >
           Enter
         </button>
