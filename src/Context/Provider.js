@@ -8,7 +8,11 @@ function Provider({ children }) {
 =======
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+<<<<<<< HEAD
 >>>>>>> fe4a331ef5106a78723f253a80288b103a799cff
+=======
+  const [disabled, setDisabled] = useState(true);
+>>>>>>> db430a4b6663ff40fbac59f74fa0db06d3c209fc
 
   const getIngredienteAPIFood = async (ingredient) => {
     const URL = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
@@ -79,7 +83,12 @@ function Provider({ children }) {
     setEmail,
     password,
     setPassword,
+<<<<<<< HEAD
 >>>>>>> fe4a331ef5106a78723f253a80288b103a799cff
+=======
+    disabled,
+    setDisabled,
+>>>>>>> db430a4b6663ff40fbac59f74fa0db06d3c209fc
   };
 
   return (
@@ -90,7 +99,7 @@ function Provider({ children }) {
 }
 
 Provider.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Provider;

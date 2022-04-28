@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import Context from '../Context/Context';
 
 function Login() {
@@ -7,11 +8,18 @@ function Login() {
     setPassword,
     email,
     password } = useContext(Context);
+
   const num = 6;
+
+  const jsonObj = JSON.stringify({ email });
+
+  const history = useHistory();
 
   function btnEnter() {
     localStorage.setItem('mealsToken', '1');
     localStorage.setItem('cocktailsToken', '1');
+    localStorage.setItem('user', jsonObj);
+    history.push('/foods');
   }
 
   const validateEmail = () => (email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/));
