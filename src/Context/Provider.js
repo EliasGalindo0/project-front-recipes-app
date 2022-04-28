@@ -6,7 +6,6 @@ function Provider({ children }) {
   const [list, setListFood] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [disabled, setDisabled] = useState(true);
 
   const getIngredienteAPIFood = async (ingredient) => {
     const URL = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
@@ -75,8 +74,6 @@ function Provider({ children }) {
     setEmail,
     password,
     setPassword,
-    disabled,
-    setDisabled,
   };
 
   return (
