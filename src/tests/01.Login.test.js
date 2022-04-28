@@ -80,18 +80,19 @@ describe('Test page Login', () => {
 
   it('Requisito 07. Verifica se o e-mail está salvo no localStorage', () => {
     renderWithRouter(<App />);
-
-    /* const email = screen.getByTestId('email-input');
-    const senha = screen.getByTestId('password-input');
-
-    userEvent.type(email, VALID_EMAIL);
-    userEvent.type(senha, VALID_PASSWORD);
-    expect(screen.getByTestId(TESTID_BTN)).toBeEnabled();
-
-    userEvent.click(screen.getByTestId(TESTID_BTN)); */
-
     const emailToken = JSON.parse(localStorage.getItem('user'));
     const { email } = emailToken;
     expect(email).toBe(VALID_EMAIL);
   });
+
+  /* it('Requisito 08. Verifica se redireciona para a página de receitas', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const homeLink = screen.getByRole('button', { description: 'Enter' });
+    expect(homeLink).toBeInTheDocument();
+    userEvent.click(homeLink);
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/foods');
+  }); */
 });
