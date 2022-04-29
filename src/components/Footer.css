@@ -1,10 +1,10 @@
 .footer {
-    bottom: 0;
-    position: fixed;
-    width: 90%;
-    text-align: center;
+  bottom: 0;
+  position: fixed;
+  text-align: center;
+  width: 90%;
 }
 
 .footer-icon {
-    padding: 20px;
+  padding: 20px;
 }
