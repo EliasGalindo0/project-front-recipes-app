@@ -3,7 +3,6 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FoodPage from './pages/FoodsPage';
-import Provider from './Context/Provider';
 import DrinksPage from './pages/DrinksPage';
 import Explore from './pages/Explore';
 import ExploreFoods from './pages/ExploreFoods';
@@ -15,6 +14,7 @@ import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Login from './pages/Login';
+import Provider from './Context/Provider';
 
 function App() {
   return (
@@ -87,7 +87,7 @@ function App() {
         />
 
         <Route
-          path="/favorites-recipes"
+          path="/favorite-recipes"
           component={ FavoriteRecipes }
           exact
         />
@@ -95,5 +95,4 @@ function App() {
     </Provider>
   );
 }
-
 export default App;

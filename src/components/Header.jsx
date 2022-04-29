@@ -83,28 +83,33 @@ function Header({ showIcon, titleHeader }) {
     <header>
       <Link
         to="/profile"
-        data-testid="profile-top-btn"
       >
-        <img src={ profileIcon } alt="ícone" />
+        <img
+          data-testid="profile-top-btn"
+          src={ profileIcon }
+          alt="ícone"
+        />
       </Link>
 
       <h2 data-testid="page-title">{ titleHeader }</h2>
 
       { showIcon ? (
         <button
-          data-testid="search-top-btn"
           type="button"
           onClick={ () => { setSearch((a) => !a); } }
         >
-          <img src={ searchIcon } alt="explore" />
+          <img
+            data-testid="search-top-btn"
+            src={ searchIcon }
+            alt="explore"
+          />
         </button>
       ) : undefined }
 
       { search ? (
-        <div
-          data-testid="search-input"
-        >
+        <div>
           <input
+            data-testid="search-input"
             type="text"
             placeholder="Search Recipe"
             onChange={ ({ target }) => { setValueInput(target.value); } }
@@ -138,7 +143,7 @@ function Header({ showIcon, titleHeader }) {
                 type="radio"
                 name="Conditional"
                 id="firstLetter"
-                ata-testid="first-letter-search-radio"
+                data-testid="first-letter-search-radio"
                 onClick={ ({ target }) => { serFilterRadio(target.id); } }
               />
               First Letter
