@@ -84,8 +84,7 @@ describe('Test page Login', () => {
     const { email } = emailToken;
     expect(email).toBe(VALID_EMAIL);
   });
-
-  /* it('Requisito 08. Verifica se redireciona para a página de receitas', () => {
+  it('Requisito 08. Verifica se redireciona para a página de receitas', () => {
     const { history } = renderWithRouter(<App />);
 
     const homeLink = screen.getByRole('button', { description: 'Enter' });
@@ -94,5 +93,5 @@ describe('Test page Login', () => {
 
     const { pathname } = history.location;
     expect(pathname).toBe('/foods');
-  }); */
+  });
 });
