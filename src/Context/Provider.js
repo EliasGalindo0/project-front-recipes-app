@@ -4,21 +4,8 @@ import Context from './Context';
 
 function Provider({ children }) {
   const [list, setListFood] = useState('');
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-<<<<<<< HEAD
->>>>>>> fe4a331ef5106a78723f253a80288b103a799cff
-=======
-  const [disabled, setDisabled] = useState(true);
->>>>>>> db430a4b6663ff40fbac59f74fa0db06d3c209fc
-=======
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
->>>>>>> 714b582592cd54ee6e00f3c14c3daa243de998bf
 
   const getIngredienteAPIFood = async (ingredient) => {
     const URL = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
@@ -83,21 +70,10 @@ function Provider({ children }) {
     getIngredienteAPIDrink,
     getNameAPIDrink,
     getFirtLetterAPIDrink,
-<<<<<<< HEAD
-=======
     email,
     setEmail,
     password,
     setPassword,
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> fe4a331ef5106a78723f253a80288b103a799cff
-=======
-    disabled,
-    setDisabled,
->>>>>>> db430a4b6663ff40fbac59f74fa0db06d3c209fc
-=======
->>>>>>> 714b582592cd54ee6e00f3c14c3daa243de998bf
   };
 
   return (

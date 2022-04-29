@@ -25,15 +25,9 @@ function App() {
             path="/"
             component={ Login }
             exact
-<<<<<<< HEAD
-          />      
-    
-           <Route
-=======
           />
 
           <Route
->>>>>>> fe4a331ef5106a78723f253a80288b103a799cff
             path="/foods"
             component={ FoodPage }
             exact
@@ -101,10 +95,7 @@ function App() {
         </Switch>
       </BrowserRouter>
     </Provider>
-<<<<<<< HEAD
-=======
   );
 }
->>>>>>> fe4a331ef5106a78723f253a80288b103a799cff
 
 export default App;
