@@ -86,10 +86,13 @@ describe('Test page Login', () => {
   });
   it('Requisito 08. Verifica se redireciona para a página de receitas', () => {
     const { history } = renderWithRouter(<App />);
+    const email = screen.getByTestId(TESTID_EMAIL);
+    const senha = screen.getByTestId(TESTID_PASSWORD);
 
-    const homeLink = screen.getByRole('button', { description: 'Enter' });
-    expect(homeLink).toBeInTheDocument();
-    userEvent.click(homeLink);
+    userEvent.type(email, VALID_EMAIL);
+    userEvent.type(senha, VALID_PASSWORD);
+    expect(screen.getByTestId(TESTID_BTN)).toBeEnabled();
+    userEvent.click(screen.getByTestId(TESTID_BTN));
 
     const { pathname } = history.location;
     expect(pathname).toBe('/foods');
