@@ -8,9 +8,9 @@ function DrinksPage() {
     <>
       <Header showIcon titleHeader="Drinks" />
 
-      <ShowList />
-
       <Footer />
+
+      <ShowList titleHeader="Drinks" />
     </>
   );
 }
