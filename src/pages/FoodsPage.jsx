@@ -8,9 +8,9 @@ function Foods() {
     <>
       <Header showIcon titleHeader="Foods" />
 
-      <ShowList />
-
       <Footer />
+
+      <ShowList titleHeader="Foods" />
     </>
   );
 }
