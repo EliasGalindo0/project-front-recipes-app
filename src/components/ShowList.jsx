@@ -178,6 +178,8 @@ function ShowList({ titleHeader }) {
     }
   };
 
+  // ir pra main
+
   return (
     <main>
       { renderCategory() }
