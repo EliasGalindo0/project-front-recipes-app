@@ -2,7 +2,7 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/react';
 import App from '../App';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from './RenderWithRouter';
 
 const VALID_EMAIL = 'igor@gmail.com';
 const TESTID_EMAIL = 'email-input';
