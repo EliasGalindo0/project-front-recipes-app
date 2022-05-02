@@ -6,7 +6,6 @@ import FoodPage from './pages/FoodsPage';
 import DrinksPage from './pages/DrinksPage';
 import Explore from './pages/Explore';
 import ExploreFoods from './pages/ExploreFoods';
-import ExploreDrinks from './pages/ExploreDrinks';
 import ExploreFoodsIngredients from './pages/ExploreFoodsIngredients';
 import ExploreDrinksIngredient from './pages/ExploreDrinksIngredients';
 import ExploreFoodNationalities from './pages/ExploreFoodsNationalities';
@@ -15,6 +14,7 @@ import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Login from './pages/Login';
 import Provider from './Context/Provider';
+import SurpriseMe from './pages/SurpriseMe';
 
 function App() {
   return (
@@ -51,12 +51,6 @@ function App() {
         />
 
         <Route
-          path="/explore/drinks"
-          component={ ExploreDrinks }
-          exact
-        />
-
-        <Route
           path="/explore/foods/ingredients"
           component={ ExploreFoodsIngredients }
           exact
@@ -89,6 +83,12 @@ function App() {
         <Route
           path="/favorite-recipes"
           component={ FavoriteRecipes }
+          exact
+        />
+
+        <Route
+          path="/explore/surpriseme"
+          component={ SurpriseMe }
           exact
         />
       </Switch>
