@@ -134,7 +134,9 @@ function ShowList({ titleHeader }) {
             data-testid={ `${index}-recipe-card` }
             key={ recipe.strMeal }
           >
-            <Link to={ `/foods/${recipe.idMeal}` }>
+            <Link
+              to={ `/foods/${recipe.idMeal}` }
+            >
               <img
                 data-testid={ `${index}-card-img` }
                 src={ recipe.strMealThumb }
@@ -159,7 +161,9 @@ function ShowList({ titleHeader }) {
             data-testid={ `${index}-recipe-card` }
             key={ recipe.strDrink }
           >
-            <Link to={ `/drinks/${recipe.idDrink}` }>
+            <Link
+              to={ `/drinks/${recipe.idDrink}` }
+            >
               <img
                 data-testid={ `${index}-card-img` }
                 src={ recipe.strDrinkThumb }

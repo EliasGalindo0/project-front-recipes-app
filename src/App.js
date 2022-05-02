@@ -15,6 +15,7 @@ import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Login from './pages/Login';
 import Provider from './Context/Provider';
+import Detail from './components/Detail';
 
 function App() {
   return (
@@ -25,7 +26,11 @@ function App() {
           component={ Login }
           exact
         />
-
+        <Route
+          path="/foods/:id"
+          component={ Detail }
+          exact
+        />
         <Route
           path="/foods"
           component={ FoodPage }
