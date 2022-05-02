@@ -60,8 +60,6 @@ function ShowList({ titleHeader }) {
 
     const URLD = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${param}`;
 
-    const URLS = 'https://www.themealdb.com/api/json/v1/1/random.php';
-
     console.log(param);
 
     setAtualFood(param);
@@ -74,12 +72,6 @@ function ShowList({ titleHeader }) {
     }
     if (titleHeader === 'Drinks') {
       const response = await fetch(URLD);
-      const data = await response.json();
-      console.log(data);
-      setListFood(data);
-    }
-    if (titleHeader === 'SurpriseMe') {
-      const response = await fetch(URLS);
       const data = await response.json();
       console.log(data);
       setListFood(data);
