@@ -15,7 +15,8 @@ import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Login from './pages/Login';
 import Provider from './Context/Provider';
-import Detail from './components/Detail';
+import DetailFood from './components/DetailFood';
+import DetailDrink from './components/DetailDrink';
 
 function App() {
   return (
@@ -26,11 +27,13 @@ function App() {
           component={ Login }
           exact
         />
+
         <Route
           path="/foods/:id"
-          component={ Detail }
+          component={ DetailFood }
           exact
         />
+
         <Route
           path="/foods"
           component={ FoodPage }
@@ -40,6 +43,12 @@ function App() {
         <Route
           path="/drinks"
           component={ DrinksPage }
+          exact
+        />
+
+        <Route
+          path="/drinks/:id"
+          component={ DetailDrink }
           exact
         />
 
