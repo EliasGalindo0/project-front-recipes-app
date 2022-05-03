@@ -17,6 +17,7 @@ import Login from './pages/Login';
 import Provider from './Context/Provider';
 import DetailFood from './components/DetailFood';
 import DetailDrink from './components/DetailDrink';
+import ProgressFood from './components/ProgressFood';
 
 function App() {
   return (
@@ -31,6 +32,12 @@ function App() {
         <Route
           path="/foods/:id"
           component={ DetailFood }
+          exact
+        />
+
+        <Route
+          path="/foods/:id/in-progress"
+          component={ ProgressFood }
           exact
         />
 

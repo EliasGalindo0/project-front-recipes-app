@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Carousel from 'react-elastic-carousel';
+import '../CSS/DetailFood.css';
 
 function DetailDrink() {
   const [foodDetail, setFoodDetail] = useState();
@@ -73,26 +73,28 @@ function DetailDrink() {
   const renderCarousel = () => {
     if (recomFood) {
       return (
-        <Carousel id="Carousel" itemsToShow={ 2 }>
-          { recomFood.map((a, index) => (
-            <div
-              id="divCarousel"
-              key={ index }
-              data-testid={ `${index}-recomendation-card` }
-            >
-              <img id="imgCarousel" src={ a.strMealThumb } alt={ a.strMeal } />
-
-              <p id="pCarousel">{ a.strCategory }</p>
-
-              <h4
-                data-testid={ `${index}-recomendation-title` }
-                id="h4Carousel"
+        <div className="container">
+          <div className="divCarouselBigger">
+            { recomFood.map((a, index) => (
+              <div
+                className="divCarousel"
+                key={ index }
+                data-testid={ `${index}-recomendation-card` }
               >
-                { a.strMeal }
-              </h4>
-            </div>
-          )) }
-        </Carousel>
+                <img className="imgCarousel" src={ a.strMealThumb } alt={ a.strMeal } />
+
+                <p className="pCarousel">{ a.strCategory }</p>
+
+                <h4
+                  data-testid={ `${index}-recomendation-title` }
+                  className="h4Carousel"
+                >
+                  { a.strMeal }
+                </h4>
+              </div>
+            )) }
+          </div>
+        </div>
       );
     }
   };
@@ -100,43 +102,54 @@ function DetailDrink() {
   return (
     <div>
       {foodDetail
-        ? ( // true
-          <main>
-            <img data-testid="recipe-photo" src={ foodItem.strDrinkThumb } alt="food" />
+        ? (
+          <>
+            <main>
+              <img
+                data-testid="recipe-photo"
+                src={ foodItem.strDrinkThumb }
+                alt="food"
+                className="imgFood"
+              />
 
-            <h1 data-testid="recipe-title">{ foodItem.strDrink }</h1>
+              <h1 data-testid="recipe-title">{foodItem.strDrink}</h1>
 
-            <button data-testid="share-btn" type="button">Share</button>
+              <button data-testid="share-btn" type="button">Share</button>
 
-            <button data-testid="favorite-btn" type="button">Favorite</button>
+              <button data-testid="favorite-btn" type="button">Favorite</button>
 
-            <h3
-              data-testid="recipe-category"
-            >
-              { `${foodItem.strCategory} - ${foodItem.strAlcoholic}` }
-            </h3>
+              <h3
+                data-testid="recipe-category"
+              >
+                {`${foodItem.strCategory} - ${foodItem.strAlcoholic}`}
+              </h3>
 
-            <h5>Ingredients</h5>
+              <h5>Ingredients</h5>
 
-            <ul>
-              { renderIngredients() }
-            </ul>
+              <ul>
+                {renderIngredients()}
+              </ul>
 
-            <h3>instructions</h3>
+              <h3>instructions</h3>
 
-            <p data-testid="instructions">
-              { foodItem.strInstructions }
-            </p>
+              <p data-testid="instructions">
+                {foodItem.strInstructions}
+              </p>
 
-            <video width="750" height="500" controls data-testid="video">
-              <track kind="captions" />
-              <source src={ foodItem.strYoutube } type="video/mp4" />
-            </video>
+              {renderCarousel()}
 
-            <button type="button" data-testid="start-recipe-btn">Start Recipe</button>
+            </main>
+            <footer className="btnDiv">
+              <button
+                type="button"
+                data-testid="start-recipe-btn"
+                className="start-recipe-btn"
+              >
+                Start Recipe
+              </button>
+            </footer>
 
-            { renderCarousel() }
-          </main>
+          </>
         ) : (
           <main>loading</main>
         )}

@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import Carousel from 'react-elastic-carousel';
+import { useHistory, Link } from 'react-router-dom';
+// import Context from '../Context/Context';
 import '../CSS/DetailFood.css';
 
 function DetailFood() {
   const [foodDetail, setFoodDetail] = useState();
   const [recomFood, setRecomFood] = useState();
+
+  // const {
+  //   startRecipe,
+  //   setStartRecipe,
+  // } = useContext(Context);
+
   const history = useHistory();
   const { location } = history;
   const { pathname } = location;
@@ -74,66 +80,96 @@ function DetailFood() {
   const renderCarousel = () => {
     if (recomFood) {
       return (
-        <Carousel id="Carousel" itemsToShow={ 2 }>
-          { recomFood.map((a, index) => (
-            <div
-              id="divCarousel"
-              key={ index }
-              data-testid={ `${index}-recomendation-card` }
-            >
-              <img id="imgCarousel" src={ a.strDrinkThumb } alt={ a.strDrink } />
-
-              <p id="pCarousel">{ a.strCategory }</p>
-
-              <h4
-                data-testid={ `${index}-recomendation-title` }
-                id="h4Carousel"
+        <div className="container">
+          <div className="divCarouselBigger">
+            { recomFood.map((a, index) => (
+              <div
+                className="divCarousel"
+                key={ index }
+                data-testid={ `${index}-recomendation-card` }
               >
-                { a.strDrink }
-              </h4>
-            </div>
-          )) }
-        </Carousel>
+                <img className="imgCarousel" src={ a.strDrinkThumb } alt={ a.strDrink } />
+
+                <p className="pCarousel">{ a.strCategory }</p>
+
+                <h4
+                  data-testid={ `${index}-recomendation-title` }
+                  className="h4Carousel"
+                >
+                  { a.strDrink }
+                </h4>
+              </div>
+            )) }
+          </div>
+        </div>
       );
     }
+  };
+
+  const renderVideo = (param) => {
+    const url = param.replace('watch', 'embed').replace('?v=', '/');
+    return (
+      <iframe
+        width="350"
+        height="350"
+        src={ url }
+        title="video"
+        data-testid="video"
+      />
+    );
   };
 
   return (
     <div>
       {foodDetail
         ? ( // true
-          <main>
-            <img data-testid="recipe-photo" src={ foodItem.strMealThumb } alt="food" />
+          <>
+            <main>
+              <img
+                data-testid="recipe-photo"
+                className="imgFood"
+                src={ foodItem.strMealThumb }
+                alt="food"
+              />
 
-            <h1 data-testid="recipe-title">{ foodItem.strMeal }</h1>
+              <h1 data-testid="recipe-title">{foodItem.strMeal}</h1>
 
-            <button data-testid="share-btn" type="button">Share</button>
+              <button data-testid="share-btn" type="button">Share</button>
 
-            <button data-testid="favorite-btn" type="button">Favorite</button>
+              <button data-testid="favorite-btn" type="button">Favorite</button>
 
-            <h3 data-testid="recipe-category">{ foodItem.strCategory }</h3>
+              <h3 data-testid="recipe-category">{foodItem.strCategory}</h3>
 
-            <h5>Ingredients</h5>
+              <h5>Ingredients</h5>
 
-            <ul>
-              { renderIngredients() }
-            </ul>
+              <ul>
+                {renderIngredients()}
+              </ul>
 
-            <h3>instructions</h3>
+              <h3>instructions</h3>
 
-            <p data-testid="instructions">
-              { foodItem.strInstructions }
-            </p>
+              <p data-testid="instructions">
+                {foodItem.strInstructions}
+              </p>
 
-            <video width="750" height="500" controls data-testid="video">
-              <track kind="captions" />
-              <source src={ foodItem.strYoutube } type="video/mp4" />
-            </video>
+              {renderVideo(foodItem.strYoutube)}
 
-            <button type="button" data-testid="start-recipe-btn">Start Recipe</button>
+              {renderCarousel()}
 
-            { renderCarousel() }
-          </main>
+            </main>
+            <footer className="btnDiv">
+              <Link to={ `/foods/${id[2]}/in-progress` }>
+                <button
+                  type="button"
+                  data-testid="start-recipe-btn"
+                  className="start-recipe-btn"
+                >
+                  Start Recipe
+                </button>
+              </Link>
+            </footer>
+
+          </>
         ) : (
           <main>loading</main>
         )}
