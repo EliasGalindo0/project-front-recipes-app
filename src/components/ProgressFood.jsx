@@ -55,7 +55,7 @@ function ProgressFood() {
             <input
               id={ value[0] }
               type="checkbox"
-              onClick={ (target) => { checkBoxFunc(target); } }
+              onClick={ ({ target }) => { checkBoxFunc(target); } }
             />
             <p>{ `${value[0]}: ${value[1]}` }</p>
           </div>
