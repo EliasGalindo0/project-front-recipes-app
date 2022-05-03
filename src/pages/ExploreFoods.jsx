@@ -2,9 +2,16 @@ import React from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { surpriseFood } from '../requisitions/recipes';
 
 function ExploreFoods() {
   const history = useHistory();
+  const requisition = async () => {
+    const data = await surpriseFood();
+    console.log(data);
+    const { idMeal } = data[0];
+    history.push(`/foods/${idMeal}`);
+  };
   return (
     <>
       <Header showIcon={ false } titleHeader="Explore Foods" />
@@ -29,9 +36,7 @@ function ExploreFoods() {
       <button
         type="button"
         data-testid="explore-surprise"
-        onClick={ () => {
-          history.push('/explore/surpriseme');
-        } }
+        onClick={ requisition }
       >
         Surprise me!
       </button>
