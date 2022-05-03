@@ -2,35 +2,26 @@ import React from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { surpriseMeF } from '../requisitions/recipesData';
+import { surpriseMeD } from '../requisitions/recipesData';
 
-function ExploreFoods() {
+function ExploreDrinks() {
   const history = useHistory();
   const requisition = async () => {
-    const data = await surpriseMeF();
-    const { idMeal } = data[0];
-    history.push(`/foods/${idMeal}`);
+    const data = await surpriseMeD();
+    const { idDrink } = data[0];
+    history.push(`/drinks/${idDrink}`);
   };
   return (
     <>
-      <Header showIcon={ false } titleHeader="Explore Foods" />
+      <Header showIcon={ false } titleHeader="Explore Drinks" />
       <button
         type="button"
         data-testid="explore-by-ingredient"
         onClick={ () => {
-          history.push('/explore/foods/ingredients');
+          history.push('/explore/drinks/ingredients');
         } }
       >
         By Ingredient
-      </button>
-      <button
-        type="button"
-        data-testid="explore-by-nationality"
-        onClick={ () => {
-          history.push('/explore/foods/nationalities');
-        } }
-      >
-        By Nationality
       </button>
       <button
         type="button"
@@ -45,4 +36,4 @@ function ExploreFoods() {
   );
 }
 
-export default ExploreFoods;
+export default ExploreDrinks;

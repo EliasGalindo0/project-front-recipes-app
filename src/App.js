@@ -6,6 +6,7 @@ import FoodPage from './pages/FoodsPage';
 import DrinksPage from './pages/DrinksPage';
 import Explore from './pages/Explore';
 import ExploreFoods from './pages/ExploreFoods';
+import ExploreDrinks from './pages/ExploreDrinks';
 import ExploreFoodsIngredients from './pages/ExploreFoodsIngredients';
 import ExploreDrinksIngredient from './pages/ExploreDrinksIngredients';
 import ExploreFoodNationalities from './pages/ExploreFoodsNationalities';
@@ -47,6 +48,12 @@ function App() {
         <Route
           path="/explore/foods"
           component={ ExploreFoods }
+          exact
+        />
+
+        <Route
+          path="/explore/drinks"
+          component={ ExploreDrinks }
           exact
         />
 
