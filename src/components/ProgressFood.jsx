@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import '../CSS/ProgressFood.css';
 
 function ProgressFood() {
   const [foodProgress, setFoodProgress] = useState();
@@ -53,6 +54,7 @@ function ProgressFood() {
         >
           <div className="ingredientProgress">
             <input
+              data-testid={ `${index}-ingredient-step` }
               id={ value[0] }
               type="checkbox"
               onClick={ (target) => { checkBoxFunc(target); } }
