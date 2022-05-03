@@ -52,9 +52,8 @@ function ProgressFood() {
           key={ index }
           htmlFor={ value[0] }
         >
-          <div className="ingredientProgress">
+          <div className="ingredientProgress" data-testid={ `${index}-ingredient-step` }>
             <input
-              data-testid={ `${index}-ingredient-step` }
               id={ value[0] }
               type="checkbox"
               onClick={ (target) => { checkBoxFunc(target); } }
