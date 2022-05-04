@@ -4,7 +4,8 @@ import Context from './Context';
 
 function Provider({ children }) {
   const [list, setListFood] = useState('');
-
+  // const [surpriseMeals, setSurpriseMeal] = useState([]);
+  // const [surpriseDrinks, setSurpriseDrink] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -61,6 +62,22 @@ function Provider({ children }) {
     console.log(data);
     return data;
   };
+
+  // useEffect(() => {
+  //   fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       setSurpriseMeal(result.meals);
+  //     });
+  // }, []);
+
+  // useEffect(() => {
+  //   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       setSurpriseDrink(result.drinks);
+  //     });
+  // }, []);
 
   const contextValue = {
     getIngredienteAPIFood,

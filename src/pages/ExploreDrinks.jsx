@@ -1,8 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { surpriseMeD } from '../requisitions/recipesData';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { surpriseMeD } from '../requisitions/recipesData';
 
 function ExploreDrinks() {
   const history = useHistory();

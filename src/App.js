@@ -15,7 +15,6 @@ import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Login from './pages/Login';
 import Provider from './Context/Provider';
-import SurpriseMe from './pages/SurpriseMe';
 
 function App() {
   return (
@@ -90,12 +89,6 @@ function App() {
         <Route
           path="/favorite-recipes"
           component={ FavoriteRecipes }
-          exact
-        />
-
-        <Route
-          path="/explore/surpriseme"
-          component={ SurpriseMe }
           exact
         />
       </Switch>

@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 function ExploreFoodsNarionalities() {
   return (
     <>
-      <Header showIcon titleHeader="Explore Nationalities" />
+      <Header showIcon={ false } titleHeader="Explore Nationalities" />
       <Footer />
     </>
   );
