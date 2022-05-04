@@ -54,6 +54,22 @@ function DetailFood() {
     }
   };
 
+  const getLocalFav = () => {
+    if (foodDetail) {
+      const data = JSON.stringify(foodDetail);
+      const local = localStorage.getItem('favoriteRecipes');
+      if (local) {
+        const lista = [...local, data];
+        const localString = JSON.stringify(lista);
+        localStorage.setItem('favoriteRecipes', localString);
+      } else {
+        const lista = [data];
+        const localString = JSON.stringify(lista);
+        localStorage.setItem('favoriteRecipes', localString);
+      }
+    }
+  };
+
   useEffect(() => {
     fetchFood();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,6 +79,7 @@ function DetailFood() {
     sixRecom();
     localDoneRecipes();
     localInProgress();
+    getLocalFav();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodDetail]);
 
