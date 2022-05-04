@@ -11,11 +11,11 @@ function ProgressFood() {
   const id = pathname.split('/');
 
   const fetchFood = async () => {
-    const URL = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id[2]}`;
+    const URL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id[2]}`;
     const response = await fetch(URL);
-    const { meals } = await response.json();
-    console.log(meals[0]);
-    setFoodProgress(meals[0]);
+    const { drinks } = await response.json();
+    console.log(drinks[0]);
+    setFoodProgress(drinks[0]);
   };
 
   useEffect(() => {
@@ -65,11 +65,11 @@ function ProgressFood() {
         <img
           data-testid="recipe-photo"
           className="imgFood"
-          src={ foodProgress.strMealThumb }
+          src={ foodProgress.strDrinkThumb }
           alt="food"
         />
 
-        <h1 data-testid="recipe-title">{foodProgress.strMeal}</h1>
+        <h1 data-testid="recipe-title">{foodProgress.strDrink}</h1>
 
         <button data-testid="share-btn" type="button">Share</button>
 

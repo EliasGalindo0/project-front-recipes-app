@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import '../CSS/DetailFood.css';
+import { renderIngredients, renderFootBtn } from '../Helpers';
 
 function DetailDrink() {
   const [foodDetail, setFoodDetail] = useState();
   const [recomFood, setRecomFood] = useState();
+  const [done, setDone] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
+  const [copied, setCopied] = useState(false);
+
   const history = useHistory();
   const { location } = history;
   const { pathname } = location;
@@ -29,6 +34,22 @@ function DetailDrink() {
     setRecomFood(all);
   };
 
+  const localDoneRecipes = () => {
+    // localStorage.setItem('doneRecipes', JSON.stringify(foodDetail));
+    const local = localStorage.getItem('doneRecipes');
+    if (local && local.includes(id[2])) {
+      console.log('true');
+      setDone(true);
+    }
+  };
+
+  const localInProgress = () => {
+    const local = localStorage.getItem('inProgressRecipes');
+    if (local && local.includes(id[2])) {
+      setInProgress(true);
+    }
+  };
+
   useEffect(() => {
     fetchFood();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -36,39 +57,13 @@ function DetailDrink() {
 
   useEffect(() => {
     sixRecom();
+    localDoneRecipes();
+    localInProgress();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodDetail]);
 
   const foodItem = foodDetail ? foodDetail.drinks[0] : [];
   console.log(foodItem);
-
-  const renderIngredients = () => {
-    const ingredient = Object.entries(foodItem).filter(([key, values]) => key
-      .includes('strIngredient')
-      && typeof values === 'string' && values !== '' && values !== ' ');
-
-    const measure = Object.entries(foodItem).filter(([key, values]) => key
-      .includes('strMeasure')
-      && typeof values === 'string' && values !== '' && values !== ' ');
-
-    const ingre = ingredient.map((a) => a.splice(1));
-
-    const meas = measure.map((a) => a.splice(1));
-
-    ingre.forEach((b, index) => {
-      b.push(meas[index][0]);
-    });
-
-    return (
-      ingre.map((value, index) => (
-        <li
-          data-testid={ `${index}-ingredient-name-and-measure` }
-          key={ index }
-        >
-          { `${value[0]}: ${value[1]}` }
-        </li>))
-    );
-  };
 
   const renderCarousel = () => {
     if (recomFood) {
@@ -99,6 +94,11 @@ function DetailDrink() {
     }
   };
 
+  const copyFunc = (param) => {
+    navigator.clipboard.writeText(param);
+    setCopied(true);
+  };
+
   return (
     <div>
       {foodDetail
@@ -114,9 +114,17 @@ function DetailDrink() {
 
               <h1 data-testid="recipe-title">{foodItem.strDrink}</h1>
 
-              <button data-testid="share-btn" type="button">Share</button>
+              <button
+                data-testid="share-btn"
+                type="button"
+                onClick={ () => { copyFunc(`http://localhost:3000/drinks/${id[2]}`); } }
+              >
+                Share
+              </button>
 
               <button data-testid="favorite-btn" type="button">Favorite</button>
+
+              { copied ? <p>Link copied!</p> : undefined}
 
               <h3
                 data-testid="recipe-category"
@@ -127,7 +135,7 @@ function DetailDrink() {
               <h5>Ingredients</h5>
 
               <ul>
-                {renderIngredients()}
+                {renderIngredients(foodItem)}
               </ul>
 
               <h3>instructions</h3>
@@ -140,13 +148,7 @@ function DetailDrink() {
 
             </main>
             <footer className="btnDiv">
-              <button
-                type="button"
-                data-testid="start-recipe-btn"
-                className="start-recipe-btn"
-              >
-                Start Recipe
-              </button>
+              { renderFootBtn(done, id[2], inProgress, 'drinks') }
             </footer>
 
           </>

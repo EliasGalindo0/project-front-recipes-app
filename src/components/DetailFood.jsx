@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
-// import Context from '../Context/Context';
+import { useHistory } from 'react-router-dom';
 import '../CSS/DetailFood.css';
+import { renderIngredients, renderFootBtn } from '../Helpers';
 
 function DetailFood() {
   const [foodDetail, setFoodDetail] = useState();
   const [recomFood, setRecomFood] = useState();
-
-  // const {
-  //   startRecipe,
-  //   setStartRecipe,
-  // } = useContext(Context);
+  const [done, setDone] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const history = useHistory();
   const { location } = history;
@@ -36,6 +34,21 @@ function DetailFood() {
     setRecomFood(all);
   };
 
+  const localDoneRecipes = () => {
+    // localStorage.setItem('doneRecipes', JSON.stringify(foodDetail));
+    const local = localStorage.getItem('doneRecipes');
+    if (local && local.includes(id[2])) {
+      setDone(true);
+    }
+  };
+
+  const localInProgress = () => {
+    const local = localStorage.getItem('inProgressRecipes');
+    if (local && local.includes(id[2])) {
+      setInProgress(true);
+    }
+  };
+
   useEffect(() => {
     fetchFood();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,39 +56,13 @@ function DetailFood() {
 
   useEffect(() => {
     sixRecom();
+    localDoneRecipes();
+    localInProgress();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodDetail]);
 
   const foodItem = foodDetail ? foodDetail.meals[0] : [];
   console.log(foodItem);
-
-  const renderIngredients = () => {
-    const ingredient = Object.entries(foodItem).filter(([key, values]) => key
-      .includes('strIngredient')
-      && typeof values === 'string' && values !== '' && values !== ' ');
-
-    const measure = Object.entries(foodItem).filter(([key, values]) => key
-      .includes('strMeasure')
-      && typeof values === 'string' && values !== '' && values !== ' ');
-
-    const ingre = ingredient.map((a) => a.splice(1));
-
-    const meas = measure.map((a) => a.splice(1));
-
-    ingre.forEach((b, index) => {
-      b.push(meas[index][0]);
-    });
-
-    return (
-      ingre.map((value, index) => (
-        <li
-          data-testid={ `${index}-ingredient-name-and-measure` }
-          key={ index }
-        >
-          { `${value[0]}: ${value[1]}` }
-        </li>))
-    );
-  };
 
   const renderCarousel = () => {
     if (recomFood) {
@@ -107,7 +94,8 @@ function DetailFood() {
   };
 
   const renderVideo = (param) => {
-    const url = param.replace('watch', 'embed').replace('?v=', '/');
+    const url = param.replace('watch', 'embed').replace('?v=', '/')
+      .replace('youtube', 'youtube-nocookie');
     return (
       <iframe
         width="350"
@@ -117,6 +105,11 @@ function DetailFood() {
         data-testid="video"
       />
     );
+  };
+
+  const copyFunc = (param) => {
+    navigator.clipboard.writeText(param);
+    setCopied(true);
   };
 
   return (
@@ -134,16 +127,24 @@ function DetailFood() {
 
               <h1 data-testid="recipe-title">{foodItem.strMeal}</h1>
 
-              <button data-testid="share-btn" type="button">Share</button>
+              <button
+                data-testid="share-btn"
+                type="button"
+                onClick={ () => { copyFunc(`http://localhost:3000/foods/${id[2]}`); } }
+              >
+                Share
+              </button>
 
               <button data-testid="favorite-btn" type="button">Favorite</button>
+
+              { copied ? <p>Link copied!</p> : undefined}
 
               <h3 data-testid="recipe-category">{foodItem.strCategory}</h3>
 
               <h5>Ingredients</h5>
 
               <ul>
-                {renderIngredients()}
+                {renderIngredients(foodItem)}
               </ul>
 
               <h3>instructions</h3>
@@ -158,15 +159,7 @@ function DetailFood() {
 
             </main>
             <footer className="btnDiv">
-              <Link to={ `/foods/${id[2]}/in-progress` }>
-                <button
-                  type="button"
-                  data-testid="start-recipe-btn"
-                  className="start-recipe-btn"
-                >
-                  Start Recipe
-                </button>
-              </Link>
+              { renderFootBtn(done, id[2], inProgress, 'foods') }
             </footer>
 
           </>
