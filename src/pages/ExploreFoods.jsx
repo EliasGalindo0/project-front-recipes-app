@@ -6,6 +6,7 @@ import { surpriseMeF } from '../requisitions/recipesData';
 
 function ExploreFoods() {
   const history = useHistory();
+  // requisiçao
   const requisition = async () => {
     const data = await surpriseMeF();
     const { idMeal } = data[0];
