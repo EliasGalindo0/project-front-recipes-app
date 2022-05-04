@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import '../CSS/DetailFood.css';
+import ShareIcon from '../images/shareIcon.svg';
+import WhiteHeartIcon from '../images/whiteHeartIcon.svg';
+import BlackHeartIcon from '../images/blackHeartIcon.svg';
+
 import { renderIngredients, renderFootBtn } from '../Helpers';
 
 function DetailFood() {
@@ -9,6 +13,7 @@ function DetailFood() {
   const [done, setDone] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [favStatus, setFavStatus] = useState(false);
 
   const history = useHistory();
   const { location } = history;
@@ -49,6 +54,22 @@ function DetailFood() {
     }
   };
 
+  const getLocalFav = () => {
+    if (foodDetail) {
+      const data = JSON.stringify(foodDetail);
+      const local = localStorage.getItem('favoriteRecipes');
+      if (local) {
+        const lista = [...local, data];
+        const localString = JSON.stringify(lista);
+        localStorage.setItem('favoriteRecipes', localString);
+      } else {
+        const lista = [data];
+        const localString = JSON.stringify(lista);
+        localStorage.setItem('favoriteRecipes', localString);
+      }
+    }
+  };
+
   useEffect(() => {
     fetchFood();
     localDoneRecipes();
@@ -59,6 +80,7 @@ function DetailFood() {
     sixRecom();
     localDoneRecipes();
     localInProgress();
+    getLocalFav();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodDetail]);
 
@@ -113,6 +135,13 @@ function DetailFood() {
     setCopied(true);
   };
 
+  console.log(BlackHeartIcon);
+
+  const favButton = () => {
+    setFavStatus(!favStatus);
+  };
+  console.log(favStatus);
+
   return (
     <div>
       {foodDetail
@@ -133,10 +162,19 @@ function DetailFood() {
                 type="button"
                 onClick={ () => { copyFunc(`http://localhost:3000/foods/${id[2]}`); } }
               >
-                Share
+                <img src={ ShareIcon } alt="share-btn" />
               </button>
 
-              <button data-testid="favorite-btn" type="button">Favorite</button>
+              <button
+                type="button"
+                onClick={ favButton }
+              >
+                <img
+                  data-testid="favorite-btn"
+                  src={ favStatus ? BlackHeartIcon : WhiteHeartIcon }
+                  alt="fav-icon"
+                />
+              </button>
 
               { copied ? <p>Link copied!</p> : undefined}
 
