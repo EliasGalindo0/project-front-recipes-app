@@ -36,8 +36,25 @@ function DetailFood() {
     setRecomFood(all);
   };
 
+  const arrayLocal = JSON.stringify([{
+    id: '',
+    type: '',
+    nationality: '',
+    category: '',
+    alcoholicOrNot: '',
+    name: '',
+    image: '',
+    doneDate: '',
+    tags: '',
+  }]);
+
+  function localDoneRecipes() {
+    localStorage.setItem('doneRecipes', arrayLocal);
+  }
+
   useEffect(() => {
     fetchFood();
+    localDoneRecipes();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -119,6 +136,12 @@ function DetailFood() {
     );
   };
 
+  const jsonDoneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+  console.log(jsonDoneRecipes);
+
+  const filterLocal = jsonDoneRecipes.filter((item) => item.id.includes(id[2]));
+  console.log(filterLocal);
+
   return (
     <div>
       {foodDetail
@@ -157,7 +180,7 @@ function DetailFood() {
               {renderCarousel()}
 
             </main>
-            <footer className="btnDiv">
+            {/* <footer className="btnDiv">
               <Link to={ `/foods/${id[2]}/in-progress` }>
                 <button
                   type="button"
@@ -167,8 +190,22 @@ function DetailFood() {
                   Start Recipe
                 </button>
               </Link>
-            </footer>
-
+            </footer> */}
+            {
+              filterLocal ? (
+                <footer className="btnDiv">
+                  <Link to={ `/foods/${id[2]}/in-progress` }>
+                    <button
+                      type="button"
+                      data-testid="start-recipe-btn"
+                      className="start-recipe-btn"
+                    >
+                      Start Recipe
+                    </button>
+                  </Link>
+                </footer>
+              ) : (null)
+            }
           </>
         ) : (
           <main>loading</main>
