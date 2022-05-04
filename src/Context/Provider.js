@@ -4,10 +4,10 @@ import Context from './Context';
 
 function Provider({ children }) {
   const [list, setListFood] = useState('');
-  // const [surpriseMeals, setSurpriseMeal] = useState([]);
-  // const [surpriseDrinks, setSurpriseDrink] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const [ingredients, setIngredient] = useState([]);
+  // const [ingredientThumb, setIngredientThumb] = useState([]);
 
   const getIngredienteAPIFood = async (ingredient) => {
     const URL = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
@@ -64,18 +64,18 @@ function Provider({ children }) {
   };
 
   // useEffect(() => {
-  //   fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+  //   fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
   //     .then((response) => response.json())
   //     .then((result) => {
-  //       setSurpriseMeal(result.meals);
+  //       setIngredient(result.png);
   //     });
   // }, []);
 
   // useEffect(() => {
-  //   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+  //   fetch(`https://www.themealdb.com/images/ingredients/${strIngredient}-Small.png`)
   //     .then((response) => response.json())
   //     .then((result) => {
-  //       setSurpriseDrink(result.drinks);
+  //       setIngredientThumb(result.drinks);
   //     });
   // }, []);
 
