@@ -54,38 +54,55 @@ function DetailFood() {
     }
   };
 
-  const getLocalFav = () => {
-    if (foodDetail) {
-      const data = JSON.stringify(foodDetail);
-      const local = localStorage.getItem('favoriteRecipes');
-      if (local) {
-        const lista = [...local, data];
-        const localString = JSON.stringify(lista);
-        localStorage.setItem('favoriteRecipes', localString);
-      } else {
-        const lista = [data];
-        const localString = JSON.stringify(lista);
-        localStorage.setItem('favoriteRecipes', localString);
-      }
-    }
-  };
+  const foodItem = foodDetail ? foodDetail.meals[0] : [];
+  console.log(foodItem);
+
+  const list = {
+    id: foodItem.idMeal,
+    type: 'food',
+    nationality: foodItem.strArea,
+    category: foodItem.strCategory,
+    alcoholicOrNot: '',
+    name: foodItem.strMeal,
+    image: foodItem.strMealThumb };
+
+  console.log(list);
 
   useEffect(() => {
     fetchFood();
-    localDoneRecipes();
+    localStorage.setItem('favoriteRecipes', JSON.stringify([]));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  /* const data = JSON.stringify(list); */
+
+  const getLocalFav = () => {
+    const data = JSON.stringify(list);
+    const local = localStorage.getItem('favoriteRecipes');
+    console.log(local);
+    if (local) {
+      const lista = [...local, data];
+      const localString = JSON.stringify(lista);
+      localStorage.setItem('favoriteRecipes', localString);
+    } else {
+      const lista = [data];
+      const localString = JSON.stringify(lista);
+      localStorage.setItem('favoriteRecipes', localString);
+    }
+    console.log(data);
+  };
+
+  const xablau = getLocalFav;
+  console.log(xablau);
 
   useEffect(() => {
     sixRecom();
     localDoneRecipes();
     localInProgress();
     getLocalFav();
+    /* localStorage.setItem('favoriteRecipes', data); */
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodDetail]);
-
-  const foodItem = foodDetail ? foodDetail.meals[0] : [];
-  console.log(foodItem);
 
   const renderCarousel = () => {
     if (recomFood) {
@@ -130,6 +147,8 @@ function DetailFood() {
     );
   };
 
+  console.log(foodDetail);
+
   const copyFunc = (param) => {
     navigator.clipboard.writeText(param);
     setCopied(true);
@@ -139,6 +158,11 @@ function DetailFood() {
 
   const favButton = () => {
     setFavStatus(!favStatus);
+    if (!favStatus) {
+      console.log('falso');
+    } else {
+      listFoodDetail();
+    }
   };
   console.log(favStatus);
 
