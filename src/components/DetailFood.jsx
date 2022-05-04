@@ -180,7 +180,7 @@ function DetailFood() {
               {renderCarousel()}
 
             </main>
-            {/* <footer className="btnDiv">
+            <footer className="btnDiv">
               <Link to={ `/foods/${id[2]}/in-progress` }>
                 <button
                   type="button"
@@ -190,22 +190,7 @@ function DetailFood() {
                   Start Recipe
                 </button>
               </Link>
-            </footer> */}
-            {
-              filterLocal ? (
-                <footer className="btnDiv">
-                  <Link to={ `/foods/${id[2]}/in-progress` }>
-                    <button
-                      type="button"
-                      data-testid="start-recipe-btn"
-                      className="start-recipe-btn"
-                    >
-                      Start Recipe
-                    </button>
-                  </Link>
-                </footer>
-              ) : (null)
-            }
+            </footer>
           </>
         ) : (
           <main>loading</main>
