@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import '../CSS/DetailFood.css';
-import { renderIngredients, renderFootBtn } from '../Helpers';
+import ShareIcon from '../images/shareIcon.svg';
+import WhiteHeartIcon from '../images/whiteHeartIcon.svg';
+import BlackHeartIcon from '../images/blackHeartIcon.svg';
+
+import { renderIngredients,
+  renderFootBtn, btnFavLocal, getLocalFav,
+  deleteLocalFav, localDoneRecipes, localInProgress } from '../Helpers';
 
 function DetailDrink() {
   const [foodDetail, setFoodDetail] = useState();
@@ -9,6 +15,7 @@ function DetailDrink() {
   const [done, setDone] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [favStatus, setFavStatus] = useState(false);
 
   const history = useHistory();
   const { location } = history;
@@ -34,22 +41,6 @@ function DetailDrink() {
     setRecomFood(all);
   };
 
-  const localDoneRecipes = () => {
-    // localStorage.setItem('doneRecipes', JSON.stringify(foodDetail));
-    const local = localStorage.getItem('doneRecipes');
-    if (local && local.includes(id[2])) {
-      console.log('true');
-      setDone(true);
-    }
-  };
-
-  const localInProgress = () => {
-    const local = localStorage.getItem('inProgressRecipes');
-    if (local && local.includes(id[2])) {
-      setInProgress(true);
-    }
-  };
-
   useEffect(() => {
     fetchFood();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -64,6 +55,31 @@ function DetailDrink() {
 
   const foodItem = foodDetail ? foodDetail.drinks[0] : [];
   console.log(foodItem);
+
+  const list = {
+    id: foodItem.idDrink,
+    type: 'drink',
+    nationality: '',
+    category: foodItem.strCategory,
+    alcoholicOrNot: foodItem.strAlcoholic,
+    name: foodItem.strDrink,
+    image: foodItem.strDrinkThumb,
+  };
+
+  useEffect(() => {
+    fetchFood();
+    btnFavLocal(id[2], setFavStatus);
+    // localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    sixRecom();
+    localDoneRecipes(id[2], setDone);
+    localInProgress(id[2], setInProgress);
+    /* localStorage.setItem('favoriteRecipes', data); */
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [foodDetail]);
 
   const renderCarousel = () => {
     if (recomFood) {
@@ -99,6 +115,17 @@ function DetailDrink() {
     setCopied(true);
   };
 
+  const favButton = () => {
+    setFavStatus(!favStatus);
+    if (!favStatus) {
+      getLocalFav(list);
+      console.log('mandou pro local');
+    } else {
+      deleteLocalFav(id[2]);
+      console.log('apagar do local');
+    }
+  };
+
   return (
     <div>
       {foodDetail
@@ -119,10 +146,19 @@ function DetailDrink() {
                 type="button"
                 onClick={ () => { copyFunc(`http://localhost:3000/drinks/${id[2]}`); } }
               >
-                Share
+                <img src={ ShareIcon } alt="share-btn" />
               </button>
 
-              <button data-testid="favorite-btn" type="button">Favorite</button>
+              <button
+                type="button"
+                onClick={ favButton }
+              >
+                <img
+                  data-testid="favorite-btn"
+                  src={ favStatus ? BlackHeartIcon : WhiteHeartIcon }
+                  alt="fav-icon"
+                />
+              </button>
 
               { copied ? <p>Link copied!</p> : undefined}
 
