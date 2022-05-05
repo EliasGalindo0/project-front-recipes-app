@@ -79,7 +79,6 @@ function DetailFood() {
     sixRecom();
     localDoneRecipes();
     localInProgress();
-    getLocalFav();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodDetail]);
 
@@ -134,12 +133,10 @@ function DetailFood() {
     setCopied(true);
   };
 
-  console.log(BlackHeartIcon);
-
   const favButton = () => {
     setFavStatus(!favStatus);
+    getLocalFav();
   };
-  console.log(favStatus);
 
   return (
     <div>
