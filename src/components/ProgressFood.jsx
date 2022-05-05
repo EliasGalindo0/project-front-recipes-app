@@ -23,6 +23,13 @@ function ProgressFood() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const checkbox = ({ target }) => {
+    if (target.checked) {
+      const check = target.value;
+      console.log(check);
+    }
+  };
+
   const renderIngredients = () => {
     const ingredient = Object.entries(foodProgress).filter(([key, values]) => key
       .includes('strIngredient')
@@ -39,7 +46,6 @@ function ProgressFood() {
     ingre.forEach((b, index) => {
       b.push(meas[index][0]);
     });
-
     return (
       ingre.map((value, index) => (
         <label
@@ -50,8 +56,10 @@ function ProgressFood() {
         >
           <div className="ingredientProgress" data-testid={ `${index}-ingredient-step` }>
             <input
+              onChange={ (e) => checkbox(e) }
               id={ value[0] }
               type="checkbox"
+              value={ value[0] }
             />
             <p>{ `${value[0]}: ${value[1]}` }</p>
           </div>
@@ -88,6 +96,7 @@ function ProgressFood() {
         <p data-testid="instructions">
           {foodProgress.strInstructions}
         </p>
+        <button data-testid="finish-recipe-btn" type="button">Finish recipe</button>
       </main>
     ) : (<p>Loading</p>)
   );

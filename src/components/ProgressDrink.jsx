@@ -88,6 +88,7 @@ function ProgressFood() {
         <p data-testid="instructions">
           {foodProgress.strInstructions}
         </p>
+        <button data-testid="finish-recipe-btn" type="button">Finish recipe</button>
       </main>
     ) : (<p>Loading</p>)
   );
