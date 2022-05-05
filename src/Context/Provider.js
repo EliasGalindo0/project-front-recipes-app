@@ -63,22 +63,6 @@ function Provider({ children }) {
     return data;
   };
 
-  // useEffect(() => {
-  //   fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
-  //     .then((response) => response.json())
-  //     .then((result) => {
-  //       setIngredient(result.png);
-  //     });
-  // }, []);
-
-  // useEffect(() => {
-  //   fetch(`https://www.themealdb.com/images/ingredients/${strIngredient}-Small.png`)
-  //     .then((response) => response.json())
-  //     .then((result) => {
-  //       setIngredientThumb(result.drinks);
-  //     });
-  // }, []);
-
   const contextValue = {
     getIngredienteAPIFood,
     getNameAPIFood,
