@@ -23,31 +23,39 @@ function ExploreFoodsIngredients() {
     getIngredientsIMG();
   }, []);
 
+  // const setNewValueInput = () => {
+  //   filterRadio(ingredient12.strIngredient);
+  //   // setValueInput(target.value);
+  // };
+
   return (
-    <Link
-      to="/foods"
-      onClick={ () => getIngredienteAPIFood(ingredients) }
-    >
+    <>
       <Header showIcon={ false } titleHeader="Explore Ingredients" />
       { ingredients ? (
         ingredients.map((ingredient, index) => (
-          <div
+          <Link
             key={ ingredient.idIngredient }
-            data-testid={ `${index}-ingredient-card` }
-
+            to="/foods"
+            onClick={ () => getIngredienteAPIFood(ingredient.strIngredient) }
           >
-            <img
-              src={ `https://www.themealdb.com/images/ingredients/${ingredients[index].strIngredient}-Small.png` }
-              alt={ ingredient.strIngredient }
-              data-testid={ `${index}-card-img` }
-            />
-            <p data-testid={ `${index}-card-name` }>{ ingredient.strIngredient }</p>
+            <div
+              data-testid={ `${index}-ingredient-card` }
 
-          </div>
+            >
+              <img
+                src={ `https://www.themealdb.com/images/ingredients/${ingredients[index].strIngredient}-Small.png` }
+                alt={ ingredient.strIngredient }
+                data-testid={ `${index}-card-img` }
+              />
+              <p data-testid={ `${index}-card-name` }>{ ingredient.strIngredient }</p>
+
+            </div>
+          </Link>
         ))
       ) : undefined }
       <Footer />
-    </Link>
+    </>
+
   );
 }
 
