@@ -26,6 +26,7 @@ function ProgressFood() {
   const checkbox = ({ target }) => {
     if (target.checked) {
       const check = target.value;
+      localStorage.setItem('inProgressRecipes', check);
       console.log(check);
     }
   };
