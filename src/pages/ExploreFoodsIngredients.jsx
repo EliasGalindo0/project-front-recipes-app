@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import Context from '../Context/Context';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function ExploreFoodsIngredients() {
   const [ingredients, setIngredients] = useState();
+
+  const { getIngredienteAPIFood } = useContext(Context);
 
   const getIngredientsIMG = async () => {
     const URL = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
@@ -20,13 +24,17 @@ function ExploreFoodsIngredients() {
   }, []);
 
   return (
-    <>
+    <Link
+      to="/foods"
+      onClick={ () => getIngredienteAPIFood(ingredients) }
+    >
       <Header showIcon={ false } titleHeader="Explore Ingredients" />
       { ingredients ? (
         ingredients.map((ingredient, index) => (
           <div
             key={ ingredient.idIngredient }
             data-testid={ `${index}-ingredient-card` }
+
           >
             <img
               src={ `https://www.themealdb.com/images/ingredients/${ingredients[index].strIngredient}-Small.png` }
@@ -34,11 +42,12 @@ function ExploreFoodsIngredients() {
               data-testid={ `${index}-card-img` }
             />
             <p data-testid={ `${index}-card-name` }>{ ingredient.strIngredient }</p>
+
           </div>
         ))
       ) : undefined }
       <Footer />
-    </>
+    </Link>
   );
 }
 
