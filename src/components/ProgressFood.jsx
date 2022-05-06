@@ -40,6 +40,11 @@ function ProgressFood() {
       b.push(meas[index][0]);
     });
 
+    const checkBoxFunc = ({ target }) => {
+      console.log(target);
+      target.className = 'a';
+    };
+
     return (
       ingre.map((value, index) => (
         <label
@@ -48,13 +53,14 @@ function ProgressFood() {
           key={ index }
           htmlFor={ value[0] }
         >
-          <div className="ingredientProgress" data-testid={ `${index}-ingredient-step` }>
+          <li className="ingredientProgress" data-testid={ `${index}-ingredient-step` }>
             <input
               id={ value[0] }
               type="checkbox"
+              onClick={ (param) => { checkBoxFunc(param); } }
             />
             <p>{ `${value[0]}: ${value[1]}` }</p>
-          </div>
+          </li>
         </label>))
     );
   };
@@ -88,6 +94,8 @@ function ProgressFood() {
         <p data-testid="instructions">
           {foodProgress.strInstructions}
         </p>
+
+        <button data-testid="finish-recipe-btn" type="button">Finish Recipe</button>
       </main>
     ) : (<p>Loading</p>)
   );
