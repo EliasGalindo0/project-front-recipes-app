@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Context from '../Context/Context';
 
-function ListFood({ index, value, isChecked }) {
+function ListDrink({ index, value, isChecked }) {
   const [verific, setVerific] = useState(isChecked);
 
   const {
@@ -11,40 +11,43 @@ function ListFood({ index, value, isChecked }) {
     setFinishBtnDisabled,
   } = useContext(Context);
 
+  console.log(verific);
+
   const history = useHistory();
   const { location } = history;
   const { pathname } = location;
   const id = pathname.split('/');
 
   let ingredientLocal = {
-    cocktails: {},
-    meals: {
+    cocktails: {
       [id[2]]: [],
     },
+    meals: {},
   };
 
   const checkBoxFunc = ({ target }, check) => {
     setVerific(!verific);
     if (target.checked) {
       const local = JSON.parse(localStorage.getItem('inProgressRecipes'));
-      if (local && local.meals[id[2]]) {
-        const { meals } = local;
-        const a = [...meals[id[2]], check];
-        local.meals[id[2]] = a;
+      if (local && local.cocktails[id[2]]) {
+        const { cocktails } = local;
+        console.log(cocktails);
+        const a = [...cocktails[id[2]], check];
+        local.cocktails[id[2]] = a;
         localStorage.setItem('inProgressRecipes', JSON.stringify(local));
       } else if (local) {
         ingredientLocal = local;
-        ingredientLocal.meals[id[2]] = [check];
+        ingredientLocal.cocktails[id[2]] = [check];
         localStorage.setItem('inProgressRecipes', JSON.stringify(ingredientLocal));
       } else {
-        ingredientLocal.meals[id[2]] = [check];
+        ingredientLocal.cocktails[id[2]] = [check];
         localStorage.setItem('inProgressRecipes', JSON.stringify(ingredientLocal));
       }
     } else {
       const local = JSON.parse(localStorage.getItem('inProgressRecipes'));
       console.log(local);
-      const localRemoved = local.meals[id[2]].filter((a) => a !== check);
-      local.meals[id[2]] = localRemoved;
+      const localRemoved = local.cocktails[id[2]].filter((a) => a !== check);
+      local.cocktails[id[2]] = localRemoved;
       localStorage.setItem('inProgressRecipes', JSON.stringify(local));
     }
   };
@@ -52,7 +55,7 @@ function ListFood({ index, value, isChecked }) {
   const disableBtn = () => {
     const localMeal = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (localMeal) {
-      const done = localMeal.meals[id[2]];
+      const done = localMeal.cocktails[id[2]];
       console.log(done.length);
       console.log(totalIngre);
       if (done.length === totalIngre) {
@@ -85,10 +88,10 @@ function ListFood({ index, value, isChecked }) {
   );
 }
 
-ListFood.propTypes = {
+ListDrink.propTypes = {
   index: PropTypes.number.isRequired,
   value: PropTypes.string.isRequired,
   isChecked: PropTypes.bool.isRequired,
 };
 
-export default ListFood;
+export default ListDrink;

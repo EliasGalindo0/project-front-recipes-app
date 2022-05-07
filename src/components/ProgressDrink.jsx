@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import '../CSS/ProgressFood.css';
-import ListFood from './ListFood';
+import ListDrink from './ListDrink';
 import ShareIcon from '../images/shareIcon.svg';
 import WhiteHeartIcon from '../images/whiteHeartIcon.svg';
 import BlackHeartIcon from '../images/blackHeartIcon.svg';
+
+import Context from '../Context/Context';
 
 import { btnFavLocal, getLocalFav, deleteLocalFav } from '../Helpers';
 
@@ -13,6 +15,11 @@ function ProgressDrink() {
   const [foodProgress, setFoodProgress] = useState();
   const [copied, setCopied] = useState(false);
   const [favStatus, setFavStatus] = useState(false);
+
+  const {
+    setTotalIngre,
+    finishBtnDisabled,
+  } = useContext(Context);
 
   const history = useHistory();
   const { location } = history;
@@ -64,6 +71,8 @@ function ProgressDrink() {
       b.push(meas[index][0]);
     });
 
+    setTotalIngre(ingre.length);
+
     const verificCheck = (param) => {
       const local = localStorage.getItem('inProgressRecipes');
       if (local) {
@@ -73,7 +82,7 @@ function ProgressDrink() {
 
     return (
       ingre.map((value, index) => (
-        <ListFood
+        <ListDrink
           key={ value[0] }
           value={ value }
           index={ index }
@@ -145,7 +154,15 @@ function ProgressDrink() {
           {foodProgress.strInstructions}
         </p>
 
-        <button data-testid="finish-recipe-btn" type="button">Finish Recipe</button>
+        <Link to="/done-recipes">
+          <button
+            data-testid="finish-recipe-btn"
+            type="button"
+            disabled={ !finishBtnDisabled }
+          >
+            Finish Recipe
+          </button>
+        </Link>
       </main>
     ) : (<p>Loading</p>)
   );
