@@ -19,6 +19,7 @@ function ExploreFoodsIngredients() {
 
   useEffect(() => {
     getIngredientsIMG();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { history } = useHistory();
