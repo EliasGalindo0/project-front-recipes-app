@@ -9,12 +9,7 @@ function ShowDoneRecipes() {
 
   useEffect(() => {
     const local = JSON.parse(localStorage.getItem('doneRecipes'));
-
-    console.log(local);
-
     setAll(local);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderLocalDone = () => {

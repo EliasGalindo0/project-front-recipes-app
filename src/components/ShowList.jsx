@@ -57,8 +57,7 @@ function ShowList({ titleHeader }) {
 
   useEffect(() => {
     getAPICategory(titleHeader);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [titleHeader]);
 
   const getCategoryBtn = async (param) => {
     const URlF = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${param}`;

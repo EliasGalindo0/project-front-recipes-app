@@ -22,13 +22,6 @@ function DetailFood() {
   const { pathname } = location;
   const id = pathname.split('/');
 
-  const fetchFood = async () => {
-    const URL = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id[2]}`;
-    const response = await fetch(URL);
-    const data = await response.json();
-    setFoodDetail(data);
-  };
-
   const sixRecom = async () => {
     const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
     const six = 6;
@@ -55,21 +48,20 @@ function DetailFood() {
   };
 
   useEffect(() => {
-    fetchFood();
+    (async () => {
+      const URL = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id[2]}`;
+      const response = await fetch(URL);
+      const data = await response.json();
+      setFoodDetail(data);
+    })();
     btnFavLocal(id[2], setFavStatus);
-    // localStorage.setItem('favoriteRecipes', JSON.stringify([]));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  /* const data = JSON.stringify(list); */
+  }, [id]);
 
   useEffect(() => {
     sixRecom();
     localDoneRecipes(id[2], setDone);
     localInProgress(id[2], setInProgress);
-    /* localStorage.setItem('favoriteRecipes', data); */
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [foodDetail]);
+  }, [foodDetail, id]);
 
   const renderCarousel = () => {
     if (recomFood) {
