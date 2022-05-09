@@ -8,39 +8,32 @@ function ExploreFoodsIngredients() {
   const { ingredientsList, setIngredientsList,
     setIngreOn, ingreOn, setIngreList } = useContext(Context);
 
-  const getIngredientsIMG = async () => {
-    const URL = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
-    const cardLimit = 12;
-    const response = await fetch(URL);
-    const { meals } = await response.json();
-    const ingredient12 = meals.slice(0, cardLimit);
-    console.log(ingredient12);
-    setIngredientsList(ingredient12);
-  };
-
   useEffect(() => {
-    getIngredientsIMG();
+    (async () => {
+      const URL = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
+      const cardLimit = 12;
+      const response = await fetch(URL);
+      const { meals } = await response.json();
+      const ingredient12 = meals.slice(0, cardLimit);
+      setIngredientsList(ingredient12);
+    })();
     setIngreOn(true);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setIngredientsList, setIngreOn]);
 
   const { history } = useHistory();
 
   useEffect(() => {
     if (ingreOn && ingredientsList) {
       history.push('/foods');
-      console.log('push');
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ingreOn]);
+  }, [ingreOn, ingredientsList, history]);
+
   const setNewFilter = async (ingredient) => {
     const URL = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
 
     const response = await fetch(URL);
     const data = await response.json();
-    console.log(data);
     setIngreList(data);
-    // setIngreOn(true);
   };
 
   return (
@@ -52,8 +45,6 @@ function ExploreFoodsIngredients() {
             to="/foods"
             key={ ingredient.idIngredient }
             onClick={ () => {
-              // await setIngreOn(true);
-              // await console.log(ingreOn);
               setNewFilter(ingredient.strIngredient);
             } }
           >
