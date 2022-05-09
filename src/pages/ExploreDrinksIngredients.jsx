@@ -18,7 +18,6 @@ function ExploreDrinksIngredients() {
     const response = await fetch(URL);
     const { drinks } = await response.json();
     const ingredient12 = drinks.slice(0, cardLimit);
-    // console.log(ingredient12);
     setIngredients(ingredient12);
   };
 

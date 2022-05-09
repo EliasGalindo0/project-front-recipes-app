@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useCallback } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import '../CSS/ProgressFood.css';
 import ListFood from './ListFood';
@@ -27,14 +27,14 @@ function ProgressFood() {
   const { pathname } = location;
   const id = pathname.split('/');
 
-  const fetchFood = async () => {
+  const fetchFood = useCallback(async () => {
     const URL = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id[2]}`;
     const response = await fetch(URL);
     const data = await response.json();
     const { meals } = data;
     setFoodProgress(meals[0]);
     setFoodDetail(data);
-  };
+  }, [id]);
 
   const foodItem = foodDetail ? foodDetail.meals[0] : [];
   console.log(foodItem);
@@ -52,8 +52,7 @@ function ProgressFood() {
   useEffect(() => {
     fetchFood();
     btnFavLocal(id[2], setFavStatus);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fetchFood, id]);
 
   const renderIngredients = () => {
     const ingredient = Object.entries(foodProgress).filter(([key, values]) => key

@@ -27,15 +27,6 @@ function ProgressDrink() {
   const { pathname } = location;
   const id = pathname.split('/');
 
-  const fetchFood = async () => {
-    const URL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id[2]}`;
-    const response = await fetch(URL);
-    const data = await response.json();
-    const { drinks } = data;
-    setFoodProgress(drinks[0]);
-    setFoodDetail(data);
-  };
-
   const foodItem = foodDetail ? foodDetail.drinks[0] : [];
   console.log(foodItem);
 
@@ -50,10 +41,16 @@ function ProgressDrink() {
   };
 
   useEffect(() => {
-    fetchFood();
+    (async () => {
+      const URL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id[2]}`;
+      const response = await fetch(URL);
+      const data = await response.json();
+      const { drinks } = data;
+      setFoodProgress(drinks[0]);
+      setFoodDetail(data);
+    })();
     btnFavLocal(id[2], setFavStatus);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   const renderIngredients = () => {
     const ingredient = Object.entries(foodProgress).filter(([key, values]) => key

@@ -1,16 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import ShareIcon from '../images/shareIcon.svg';
+import WhiteHeartIcon from '../images/whiteHeartIcon.svg';
+import BlackHeartIcon from '../images/blackHeartIcon.svg';
 import '../CSS/DoneRecipes.css';
+import { deleteLocalFav } from '../Helpers';
 
-function ShowDoneRecipes() {
+function ShowFavoriteRecipes() {
   const [copied, setCopied] = useState(false);
-  const [all, setAll] = useState();
+  const [favStatus] = useState(true);
+  const [all, setAll] = useState([]);
 
   useEffect(() => {
-    const local = JSON.parse(localStorage.getItem('doneRecipes'));
+    const local = JSON.parse(localStorage.getItem('favoriteRecipes'));
     setAll(local);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const favButton = useCallback((id) => {
+    setAll(all.filter((item) => item.id !== id));
+    deleteLocalFav(id);
+    console.log('apagar do local');
+  }, [all]);
 
   const renderLocalDone = () => {
     const copyFunc = (param) => {
@@ -89,6 +101,17 @@ function ShowDoneRecipes() {
               />
             </button>
 
+            <button
+              type="button"
+              onClick={ () => favButton(item.id) }
+            >
+              <img
+                data-testid={ `${index}-horizontal-favorite-btn` }
+                src={ favStatus ? BlackHeartIcon : WhiteHeartIcon }
+                alt="fav-icon"
+              />
+            </button>
+
             { copied ? <p>Link copied!</p> : undefined}
 
             { renderTags() }
@@ -100,13 +123,13 @@ function ShowDoneRecipes() {
   };
 
   const foodBtn = () => {
-    const local = JSON.parse(localStorage.getItem('doneRecipes'));
+    const local = JSON.parse(localStorage.getItem('favoriteRecipes'));
     const food = local.filter((a) => a.type === 'food');
     setAll(food);
   };
 
   const drinkBtn = () => {
-    const local = JSON.parse(localStorage.getItem('doneRecipes'));
+    const local = JSON.parse(localStorage.getItem('favoriteRecipes'));
     const drink = local.filter((a) => a.type === 'drink');
     setAll(drink);
   };
@@ -118,7 +141,7 @@ function ShowDoneRecipes() {
           data-testid="filter-by-all-btn"
           type="button"
           onClick={ () => {
-            setAll(JSON.parse(localStorage.getItem('doneRecipes')));
+            setAll(JSON.parse(localStorage.getItem('favoriteRecipes')));
           } }
         >
           All
@@ -150,4 +173,4 @@ function ShowDoneRecipes() {
   );
 }
 
-export default ShowDoneRecipes;
+export default ShowFavoriteRecipes;

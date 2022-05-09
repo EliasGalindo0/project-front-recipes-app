@@ -1,9 +1,9 @@
 p {
-  text-decoration: none;
   cursor: default;
+  text-decoration: none;
 }
 
-input[type="checkbox"]:checked ~ p {
+input:checked ~ p {
   text-decoration: line-through;
 }
 
