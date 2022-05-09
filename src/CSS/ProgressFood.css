@@ -1,0 +1,12 @@
+p {
+  text-decoration: none;
+  cursor: default;
+}
+
+input[type="checkbox"]:checked ~ p {
+  text-decoration: line-through;
+}
+
+.doneIngredients {
+  text-decoration: line-through;
+}

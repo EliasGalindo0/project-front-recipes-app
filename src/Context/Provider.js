@@ -6,6 +6,9 @@ function Provider({ children }) {
   const [list, setListFood] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [startRecipe, setStartRecipe] = useState(false);
+  const [totalIngre, setTotalIngre] = useState(0);
+  const [finishBtnDisabled, setFinishBtnDisabled] = useState(false);
   const [ingredientsList, setIngredientsList] = useState();
 
   const getIngredienteAPIFood = async (ingredient) => {
@@ -75,6 +78,12 @@ function Provider({ children }) {
     setEmail,
     password,
     setPassword,
+    startRecipe,
+    setStartRecipe,
+    totalIngre,
+    setTotalIngre,
+    finishBtnDisabled,
+    setFinishBtnDisabled,
     ingredientsList,
     setIngredientsList,
   };

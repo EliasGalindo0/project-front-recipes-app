@@ -15,6 +15,10 @@ import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Login from './pages/Login';
 import Provider from './Context/Provider';
+import DetailFood from './components/DetailFood';
+import DetailDrink from './components/DetailDrink';
+import ProgressFood from './components/ProgressFood';
+import ProgressDrink from './components/ProgressDrink';
 
 function App() {
   return (
@@ -27,6 +31,18 @@ function App() {
         />
 
         <Route
+          path="/foods/:id"
+          component={ DetailFood }
+          exact
+        />
+
+        <Route
+          path="/foods/:id/in-progress"
+          component={ ProgressFood }
+          exact
+        />
+
+        <Route
           path="/foods"
           component={ FoodPage }
           exact
@@ -35,6 +51,18 @@ function App() {
         <Route
           path="/drinks"
           component={ DrinksPage }
+          exact
+        />
+
+        <Route
+          path="/drinks/:id"
+          component={ DetailDrink }
+          exact
+        />
+
+        <Route
+          path="/drinks/:id/in-progress"
+          component={ ProgressDrink }
           exact
         />
 
