@@ -7,8 +7,6 @@ import Context from '../Context/Context';
 function ExploreDrinksIngredients() {
   const [ingredients, setIngredients] = useState();
 
-  console.log(ingredients);
-
   const {
     setIngreOn, ingreOn, ingreList, setIngreList } = useContext(Context);
 
@@ -24,27 +22,22 @@ function ExploreDrinksIngredients() {
   useEffect(() => {
     getIngredientsIMG();
     setIngreOn(true);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setIngreOn]);
 
   const { history } = useHistory();
 
   useEffect(() => {
     if (ingreOn && ingreList) {
       history.push('/foods');
-      console.log('push');
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ingreOn]);
+  }, [ingreOn, history, ingreList]);
 
   const setNewFilter = async (ingredient) => {
     const URL = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`;
 
     const response = await fetch(URL);
     const data = await response.json();
-    console.log(data);
     setIngreList(data);
-    // setIngreOn(true);
   };
 
   return (
