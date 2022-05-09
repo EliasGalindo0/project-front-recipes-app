@@ -19,6 +19,7 @@ import DetailFood from './components/DetailFood';
 import DetailDrink from './components/DetailDrink';
 import ProgressFood from './components/ProgressFood';
 import ProgressDrink from './components/ProgressDrink';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -117,6 +118,11 @@ function App() {
         <Route
           path="/favorite-recipes"
           component={ FavoriteRecipes }
+          exact
+        />
+        <Route
+          path="/explore/drinks/nationalities"
+          component={ NotFound }
           exact
         />
       </Switch>

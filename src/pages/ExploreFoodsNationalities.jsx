@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -24,27 +25,39 @@ function ExploreFoodsNationalities() {
   const getRecipes = async ({ target }) => {
     if (target.value === 'All') {
       console.log(target.value);
-      const URL = 'https://www.themealdb.com/api/json/v1/1/filter.php?a=American';
+      const URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+      const cardLimit = 12;
       const response = await fetch(URL);
       const { meals } = await response.json();
+      const meals12 = meals.slice(0, cardLimit);
 
-      setRecipes(meals);
+      setRecipes(meals12);
+      return;
     }
     const URL = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${target.value}`;
+
+    const cardLimit = 12;
     const response = await fetch(URL);
     const { meals } = await response.json();
-
-    setRecipes(meals);
+    const meals12 = meals.slice(0, cardLimit);
+    console.log(meals12);
+    setRecipes(meals12);
+    console.log(recipes);
   };
 
-  /* if (target.value === 'All') {
-    console.log(target.value);
-    const URL = 'https://www.themealdb.com/api/json/v1/1/filter.php?a=American';
+  const getRecipesAll = async () => {
+    const URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+    const cardLimit = 12;
     const response = await fetch(URL);
     const { meals } = await response.json();
+    const meals12 = meals.slice(0, cardLimit);
 
-    setRecipes(meals);
-  } */
+    setRecipes(meals12);
+  };
+
+  useEffect(() => {
+    getRecipesAll();
+  }, []);
 
   return (
     <>
@@ -73,19 +86,24 @@ function ExploreFoodsNationalities() {
       <div>
         { recipes ? (
           recipes.map((recipe, index) => (
-            <div
+            <Link
+              to={ `/foods/${recipe.idMeal}` }
               key={ recipe.idMeal }
-              data-testid={ `${index}-recipe-card` }
-
             >
-              <img
-                src={ recipe.strMealThumb }
-                alt={ recipe.strMeal }
-                data-testid={ `${index}-card-img` }
-              />
-              <p data-testid={ `${index}-card-name` }>{ recipe.strMeal }</p>
+              <div
+                key={ recipe.idMeal }
+                data-testid={ `${index}-recipe-card` }
 
-            </div>
+              >
+                <img
+                  src={ recipe.strMealThumb }
+                  alt={ recipe.strMeal }
+                  data-testid={ `${index}-card-img` }
+                />
+                <p data-testid={ `${index}-card-name` }>{ recipe.strMeal }</p>
+
+              </div>
+            </Link>
           ))
         ) : undefined }
       </div>
