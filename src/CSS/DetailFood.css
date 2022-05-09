@@ -3,48 +3,48 @@
 }
 
 .imgCarousel {
-  display: inline-block;
-  width: 135px;
-  margin: 10px 10px 10px 10px;
-  height: 150px;
   background: rgba(0, 0, 0, 0.05) no-repeat center center;
   background-size: cover;
-  position:relative;
   border-radius: 20px;
   box-shadow: 0 0 10px #dfdfdf;
-};
+  display: inline-block;
+  height: 150px;
+  margin: 10px;
+  position: relative;
+  width: 135px;
+}
 
 .container {
+  display: flex;
+  overflow: hidden;
   width: 100%;
-  display:flex;
-  overflow:hidden;
 }
 
 .divCarousel {
-  display: inline-block;
-  width: 155px;
-  margin: 0 10px;
-  height: 240px;
-  margin-left: 0px;
   background: rgba(0, 0, 0, 0.05) no-repeat center center;
   background-size: cover;
-  position:relative;
   border-radius: 20px;
-  box-shadow: 0 0 5px #000000;
+  box-shadow: 0 0 5px black;
+  display: inline-block;
+  height: 240px;
+  margin: 0 10px;
+  margin-left: 1px;
+  position: relative;
+  width: 155px;
 }
 
-.divCarouselBigger{
-  display:block;
-  width: 100%;
+.divCarouselBigger {
+  background: white;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+  display: block;
   height: 270px;
-  background: #ffffff;
+  margin: 0;
+  margin-bottom: 50px;
   overflow-x: scroll;
   padding: 10px;
-  margin: 0;
-  white-space: nowrap; 
-  border-top: 2px solid rgba(0, 0, 0, 0.1);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 50px;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .pCarousel {
@@ -53,27 +53,20 @@
 }
 
 .h4Carousel {
-  margin-top: -15px;
   margin-left: 15px;
+  margin-top: -15px;
 }
 
 .btnDiv {
-  /* margin-bottom: 40px; */
-  /* border-top: 1px solid #333; */
   bottom: 0;
-  left: 0;
   height: 40px;
+  left: 0;
   position: fixed;
 }
 
 .start-recipe-btn {
+  bottom: 1px;
   position: fixed;
-  bottom: 0px;
-}
-
-#labelCheckBox {
-  display: flex;
-  flex-direction: column;
 }
 
 .ingredientProgress {
