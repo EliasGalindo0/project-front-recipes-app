@@ -4,7 +4,7 @@ import ShareIcon from '../images/shareIcon.svg';
 import WhiteHeartIcon from '../images/whiteHeartIcon.svg';
 import BlackHeartIcon from '../images/blackHeartIcon.svg';
 import '../CSS/DoneRecipes.css';
-import { btnFavLocal, getLocalFav,
+import {
   deleteLocalFav } from '../Helpers';
 
 function ShowFavoriteRecipes() {
@@ -14,24 +14,22 @@ function ShowFavoriteRecipes() {
 
   useEffect(() => {
     const local = JSON.parse(localStorage.getItem('favoriteRecipes'));
-
-    console.log(local[0].id);
-
     setAll(local);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const favButton = ({ target }) => {
-    console.log(target.value);
+  const favButton = (id) => {
     setFavStatus(!favStatus);
-    if (!favStatus) {
-      getLocalFav(list);
-      console.log('mandou pro local');
-    } else {
-      deleteLocalFav(id[2]);
-      console.log('apagar do local');
-    }
+    // if (!favStatus) {
+    //   getLocalFav(list);
+    //   console.log('mandou pro local');
+    // } else {
+    //   deleteLocalFav(id);
+    //   console.log('apagar do local');
+    // }
+    deleteLocalFav(id);
+    console.log('apagar do local');
   };
 
   const renderLocalDone = () => {
@@ -113,11 +111,10 @@ function ShowFavoriteRecipes() {
 
             <button
               type="button"
-              value={ item }
-              onClick={ (e) => favButton(e) }
+              onClick={ () => favButton(item.id) }
             >
               <img
-                data-testid="favorite-btn"
+                data-testid={ `${index}-horizontal-favorite-btn` }
                 src={ favStatus ? BlackHeartIcon : WhiteHeartIcon }
                 alt="fav-icon"
               />
