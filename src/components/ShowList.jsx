@@ -10,22 +10,27 @@ function ShowList({ titleHeader }) {
   const {
     list,
     setListFood,
+    ingredientsList,
   } = useContext(Context);
+  console.log(list);
 
   const getAPIStandard = async (param) => {
     const URLFoods = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
     const URLDrinks = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-
-    if (param === 'Foods') {
-      const response = await fetch(URLFoods);
-      const data = await response.json();
-      setListFood(data);
-    }
-    if (param === 'Drinks') {
-      const response = await fetch(URLDrinks);
-      const data = await response.json();
-      setListFood(data);
+    if (ingredientsList) {
+      setListFood(ingredientsList);
+    } else {
+      if (param === 'Foods') {
+        const response = await fetch(URLFoods);
+        const data = await response.json();
+        setListFood(data);
+      }
+      if (param === 'Drinks') {
+        const response = await fetch(URLDrinks);
+        const data = await response.json();
+        setListFood(data);
+      }
     }
   };
 
