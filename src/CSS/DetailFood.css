@@ -1,0 +1,81 @@
+.imgFood {
+  height: 300px;
+}
+
+.imgCarousel {
+  display: inline-block;
+  width: 135px;
+  margin: 10px 10px 10px 10px;
+  height: 150px;
+  background: rgba(0, 0, 0, 0.05) no-repeat center center;
+  background-size: cover;
+  position:relative;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #dfdfdf;
+};
+
+.container {
+  width: 100%;
+  display:flex;
+  overflow:hidden;
+}
+
+.divCarousel {
+  display: inline-block;
+  width: 155px;
+  margin: 0 10px;
+  height: 240px;
+  margin-left: 0px;
+  background: rgba(0, 0, 0, 0.05) no-repeat center center;
+  background-size: cover;
+  position:relative;
+  border-radius: 20px;
+  box-shadow: 0 0 5px #000000;
+}
+
+.divCarouselBigger{
+  display:block;
+  width: 100%;
+  height: 270px;
+  background: #ffffff;
+  overflow-x: scroll;
+  padding: 10px;
+  margin: 0;
+  white-space: nowrap; 
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
+}
+
+.pCarousel {
+  font-size: 18px;
+  margin-left: 15px;
+}
+
+.h4Carousel {
+  margin-top: -15px;
+  margin-left: 15px;
+}
+
+.btnDiv {
+  /* margin-bottom: 40px; */
+  /* border-top: 1px solid #333; */
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  position: fixed;
+}
+
+.start-recipe-btn {
+  position: fixed;
+  bottom: 0px;
+}
+
+#labelCheckBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredientProgress {
+  display: flex;
+}

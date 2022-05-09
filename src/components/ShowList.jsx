@@ -10,22 +10,27 @@ function ShowList({ titleHeader }) {
   const {
     list,
     setListFood,
+    ingredientsList,
   } = useContext(Context);
+  console.log(list);
 
   const getAPIStandard = async (param) => {
     const URLFoods = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
     const URLDrinks = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-
-    if (param === 'Foods') {
-      const response = await fetch(URLFoods);
-      const data = await response.json();
-      setListFood(data);
-    }
-    if (param === 'Drinks') {
-      const response = await fetch(URLDrinks);
-      const data = await response.json();
-      setListFood(data);
+    if (ingredientsList) {
+      setListFood(ingredientsList);
+    } else {
+      if (param === 'Foods') {
+        const response = await fetch(URLFoods);
+        const data = await response.json();
+        setListFood(data);
+      }
+      if (param === 'Drinks') {
+        const response = await fetch(URLDrinks);
+        const data = await response.json();
+        setListFood(data);
+      }
     }
   };
 
@@ -109,7 +114,6 @@ function ShowList({ titleHeader }) {
 
   const renderCards = () => {
     if (list === '') {
-      console.log('a');
       getAPIStandard(titleHeader);
     } else if (list) {
       const type = Object.keys(list)[0];
@@ -134,7 +138,9 @@ function ShowList({ titleHeader }) {
             data-testid={ `${index}-recipe-card` }
             key={ recipe.strMeal }
           >
-            <Link to={ `/foods/${recipe.idMeal}` }>
+            <Link
+              to={ `/foods/${recipe.idMeal}` }
+            >
               <img
                 data-testid={ `${index}-card-img` }
                 src={ recipe.strMealThumb }
@@ -159,7 +165,9 @@ function ShowList({ titleHeader }) {
             data-testid={ `${index}-recipe-card` }
             key={ recipe.strDrink }
           >
-            <Link to={ `/drinks/${recipe.idDrink}` }>
+            <Link
+              to={ `/drinks/${recipe.idDrink}` }
+            >
               <img
                 data-testid={ `${index}-card-img` }
                 src={ recipe.strDrinkThumb }
