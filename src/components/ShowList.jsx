@@ -125,6 +125,7 @@ function ShowList({ titleHeader }) {
         global.alert(mensage);
         return;
       }
+      console.log(allList);
 
       const list12 = allList.slice(0, maxCards);
 

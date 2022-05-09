@@ -5,7 +5,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function ExploreFoodsIngredients() {
-  const { ingredientsList, setIngredientsList } = useContext(Context);
+  const { ingredientsList, setIngredientsList,
+    setIngreOn, ingreOn, setIngreList } = useContext(Context);
 
   const getIngredientsIMG = async () => {
     const URL = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
@@ -19,18 +20,27 @@ function ExploreFoodsIngredients() {
 
   useEffect(() => {
     getIngredientsIMG();
+    setIngreOn(true);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { history } = useHistory();
+
+  useEffect(() => {
+    if (ingreOn && ingredientsList) {
+      history.push('/foods');
+      console.log('push');
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ingreOn]);
   const setNewFilter = async (ingredient) => {
     const URL = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
 
     const response = await fetch(URL);
     const data = await response.json();
     console.log(data);
-    setIngredientsList(data);
-    history.push('/foods');
+    setIngreList(data);
+    // setIngreOn(true);
   };
 
   return (
@@ -41,7 +51,11 @@ function ExploreFoodsIngredients() {
           <Link
             to="/foods"
             key={ ingredient.idIngredient }
-            onClick={ () => setNewFilter(ingredient.strIngredient) }
+            onClick={ () => {
+              // await setIngreOn(true);
+              // await console.log(ingreOn);
+              setNewFilter(ingredient.strIngredient);
+            } }
           >
             <div
               data-testid={ `${index}-ingredient-card` }
