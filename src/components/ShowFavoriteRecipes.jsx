@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import ShareIcon from '../images/shareIcon.svg';
 import WhiteHeartIcon from '../images/whiteHeartIcon.svg';
 import BlackHeartIcon from '../images/blackHeartIcon.svg';
 import '../CSS/DoneRecipes.css';
-import {
-  deleteLocalFav } from '../Helpers';
+import { deleteLocalFav } from '../Helpers';
 
 function ShowFavoriteRecipes() {
   const [copied, setCopied] = useState(false);
-  const [favStatus, setFavStatus] = useState(true);
-  const [all, setAll] = useState();
+  const [favStatus] = useState(true);
+  const [all, setAll] = useState([]);
 
   useEffect(() => {
     const local = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -19,18 +18,11 @@ function ShowFavoriteRecipes() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const favButton = (id) => {
-    setFavStatus(!favStatus);
-    // if (!favStatus) {
-    //   getLocalFav(list);
-    //   console.log('mandou pro local');
-    // } else {
-    //   deleteLocalFav(id);
-    //   console.log('apagar do local');
-    // }
+  const favButton = useCallback((id) => {
+    setAll(all.filter((item) => item.id !== id));
     deleteLocalFav(id);
     console.log('apagar do local');
-  };
+  }, [all]);
 
   const renderLocalDone = () => {
     const copyFunc = (param) => {
