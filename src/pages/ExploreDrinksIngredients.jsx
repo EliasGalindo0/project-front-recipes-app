@@ -21,7 +21,9 @@ function ExploreDrinksIngredients() {
   }, []);
 
   return (
-    <Link to="/foods">
+    <Link
+      to="/foods"
+    >
       <Header showIcon={ false } titleHeader="Explore Ingredients" />
       { ingredients ? (
         ingredients.map((ingredient, index) => (
