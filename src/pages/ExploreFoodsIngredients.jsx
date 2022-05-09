@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 function ExploreFoodsIngredients() {
   const { ingredientsList, setIngredientsList,
-    setIngreOn, ingreOn, setIngreList } = useContext(Context);
+    setIngreOn, ingreOn, setIngreList, ingreList } = useContext(Context);
 
   useEffect(() => {
     (async () => {
@@ -23,10 +23,10 @@ function ExploreFoodsIngredients() {
   const { history } = useHistory();
 
   useEffect(() => {
-    if (ingreOn && ingredientsList) {
+    if (ingreOn && ingredientsList && ingreList) {
       history.push('/foods');
     }
-  }, [ingreOn, ingredientsList, history]);
+  }, [ingreOn, ingredientsList, history, ingreList]);
 
   const setNewFilter = async (ingredient) => {
     const URL = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;

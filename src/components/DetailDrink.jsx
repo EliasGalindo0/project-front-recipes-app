@@ -53,20 +53,24 @@ function DetailDrink() {
   };
 
   useEffect(() => {
+    const ids = window.location.pathname.split('/');
+
     (async () => {
-      const URL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id[2]}`;
+      const URL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${ids[2]}`;
       const response = await fetch(URL);
       const data = await response.json();
       setFoodDetail(data);
     })();
-    btnFavLocal(id[2], setFavStatus);
-  }, [id]);
+    btnFavLocal(ids[2], setFavStatus);
+  }, []);
 
   useEffect(() => {
+    const ids = window.location.pathname.split('/');
+
     sixRecom();
-    localDoneRecipes(id[2], setDone);
-    localInProgress(id[2], setInProgress);
-  }, [foodDetail, id]);
+    localDoneRecipes(ids[2], setDone);
+    localInProgress(ids[2], setInProgress);
+  }, [foodDetail]);
 
   const renderCarousel = () => {
     if (recomFood) {
