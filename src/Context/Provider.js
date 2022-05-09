@@ -4,9 +4,9 @@ import Context from './Context';
 
 function Provider({ children }) {
   const [list, setListFood] = useState('');
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [ingredientsList, setIngredientsList] = useState();
 
   const getIngredienteAPIFood = async (ingredient) => {
     const URL = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
@@ -75,6 +75,8 @@ function Provider({ children }) {
     setEmail,
     password,
     setPassword,
+    ingredientsList,
+    setIngredientsList,
   };
 
   return (
