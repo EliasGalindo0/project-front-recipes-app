@@ -54,7 +54,6 @@ function DetailDrink() {
   }, [foodDetail]);
 
   const foodItem = foodDetail ? foodDetail.drinks[0] : [];
-  console.log(foodItem);
 
   const list = {
     id: foodItem.idDrink,

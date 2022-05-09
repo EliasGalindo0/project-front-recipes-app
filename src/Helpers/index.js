@@ -45,7 +45,6 @@ export const renderFootBtn = (done, id, inProgress, param) => (
 
 export const btnFavLocal = (param, param2) => {
   const local = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  console.log(local);
   if (local) {
     const a = local.some(({ id: idFav }) => idFav === param);
     param2(a);
@@ -84,5 +83,18 @@ export const localInProgress = (param, param2) => {
   const local = localStorage.getItem('inProgressRecipes');
   if (local && local.includes(param)) {
     param2(true);
+  }
+};
+
+export const SetLocalDoneRecipes = (param) => {
+  const local = JSON.parse(localStorage.getItem('doneRecipes'));
+  if (local) {
+    const lista = [...local, param];
+    const localString = JSON.stringify(lista);
+    localStorage.setItem('doneRecipes', localString);
+  } else {
+    const lista = [param];
+    const localString = JSON.stringify(lista);
+    localStorage.setItem('doneRecipes', localString);
   }
 };

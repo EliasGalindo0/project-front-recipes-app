@@ -109,7 +109,6 @@ function ShowList({ titleHeader }) {
 
   const renderCards = () => {
     if (list === '') {
-      console.log('a');
       getAPIStandard(titleHeader);
     } else if (list) {
       const type = Object.keys(list)[0];

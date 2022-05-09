@@ -8,7 +8,8 @@ import BlackHeartIcon from '../images/blackHeartIcon.svg';
 
 import Context from '../Context/Context';
 
-import { btnFavLocal, getLocalFav, deleteLocalFav } from '../Helpers';
+import { btnFavLocal, getLocalFav,
+  deleteLocalFav, SetLocalDoneRecipes } from '../Helpers';
 
 function ProgressDrink() {
   const [foodDetail, setFoodDetail] = useState();
@@ -107,6 +108,27 @@ function ProgressDrink() {
     }
   };
 
+  const doneLocal = () => {
+    let today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    const yyyy = today.getFullYear();
+
+    today = `${mm}/${dd}/${yyyy}`;
+
+    return {
+      id: foodItem.idDrink,
+      type: 'drink',
+      nationality: '',
+      category: foodItem.strCategory,
+      alcoholicOrNot: foodItem.strAlcoholic,
+      name: foodItem.strDrink,
+      image: foodItem.strDrinkThumb,
+      doneDate: today,
+      tags: foodItem.strTags,
+    };
+  };
+
   return (
     foodProgress ? (
       <main>
@@ -159,6 +181,7 @@ function ProgressDrink() {
             data-testid="finish-recipe-btn"
             type="button"
             disabled={ !finishBtnDisabled }
+            onClick={ () => { SetLocalDoneRecipes(doneLocal()); } }
           >
             Finish Recipe
           </button>
