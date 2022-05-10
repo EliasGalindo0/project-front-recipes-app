@@ -12,7 +12,7 @@ function ShowList({ titleHeader }) {
     setListFood,
     ingredientsList,
   } = useContext(Context);
-  console.log(list);
+  // console.log(list);
 
   const getAPIStandard = async (param) => {
     const URLFoods = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
