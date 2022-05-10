@@ -42,26 +42,29 @@ function ExploreFoodsIngredients() {
       <Header showIcon={ false } titleHeader="Explore Ingredients" />
       { ingredientsList ? (
         ingredientsList.map((ingredient, index) => (
-          <Link
+          <div
             className="ingredient-card"
             key={ ingredient.idIngredient }
-            to="/foods"
-            onClick={ () => {
-              setNewFilter(ingredient.strIngredient);
-            } }
           >
-            <div
-              data-testid={ `${index}-ingredient-card` }
+            <Link
+              to="/foods"
+              onClick={ () => {
+                setNewFilter(ingredient.strIngredient);
+              } }
             >
-              <img
-                src={ `https://www.themealdb.com/images/ingredients/${ingredientsList[index].strIngredient}-Small.png` }
-                alt={ ingredient.strIngredient }
-                data-testid={ `${index}-card-img` }
-              />
-              <p data-testid={ `${index}-card-name` }>{ ingredient.strIngredient }</p>
+              <div
+                data-testid={ `${index}-ingredient-card` }
+              >
+                <img
+                  src={ `https://www.themealdb.com/images/ingredients/${ingredientsList[index].strIngredient}-Small.png` }
+                  alt={ ingredient.strIngredient }
+                  data-testid={ `${index}-card-img` }
+                />
+                <p data-testid={ `${index}-card-name` }>{ ingredient.strIngredient }</p>
 
-            </div>
-          </Link>
+              </div>
+            </Link>
+          </div>
 
         ))
       ) : undefined }

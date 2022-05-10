@@ -1,18 +1,19 @@
 body {
-    background-color: #3C735F;
+  background-color: #3c735f;
 }
 
 .explore-btn {
-    border-radius: 25px;
-    background: #F2CB05;
+  background: #f2cb05;
+  border-radius: 25px;
 }
 
 .ingredient-card {
-    margin: 10px;
-    max-width: 33%;
-    justify-content: center;
-    display: flex;
-    flex-shrink: 1;
-    border: solid black 2px;
-    border-radius: 25px;
+  align-content: center;
+  border: solid black 2px;
+  border-radius: 25px;
+  display: inline-block;
+  justify-content: center;
+  min-width: 30%;
+  padding: 10px;
+  text-align: center;
 }
