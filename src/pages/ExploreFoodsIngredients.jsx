@@ -40,37 +40,41 @@ function ExploreFoodsIngredients() {
   return (
     <div>
       <Header showIcon={ false } titleHeader="Explore Ingredients" />
-      { ingredientsList ? (
-        ingredientsList.map((ingredient, index) => (
-          <div
-            className="ingredient-card"
-            key={ ingredient.idIngredient }
-          >
-            <Link
-              to="/foods"
-              onClick={ () => {
-                setNewFilter(ingredient.strIngredient);
-              } }
+      <div
+        className="ingredient-card"
+      >
+        { ingredientsList ? (
+          ingredientsList.map((ingredient, index) => (
+            <div
+              className="ingredient"
+              key={ ingredient.idIngredient }
             >
-              <div
-                data-testid={ `${index}-ingredient-card` }
+              <Link
+                className="link-to-ingredient"
+                to="/foods"
+                onClick={ () => {
+                  setNewFilter(ingredient.strIngredient);
+                } }
               >
-                <img
-                  src={ `https://www.themealdb.com/images/ingredients/${ingredientsList[index].strIngredient}-Small.png` }
-                  alt={ ingredient.strIngredient }
-                  data-testid={ `${index}-card-img` }
-                />
-                <p data-testid={ `${index}-card-name` }>{ ingredient.strIngredient }</p>
+                <div
+                  data-testid={ `${index}-ingredient-card` }
+                >
+                  <img
+                    src={ `https://www.themealdb.com/images/ingredients/${ingredientsList[index].strIngredient}-Small.png` }
+                    alt={ ingredient.strIngredient }
+                    data-testid={ `${index}-card-img` }
+                  />
+                  <p data-testid={ `${index}-card-name` }>{ ingredient.strIngredient }</p>
 
-              </div>
-            </Link>
-          </div>
+                </div>
+              </Link>
+            </div>
 
-        ))
-      ) : undefined }
+          ))
+        ) : undefined }
+      </div>
       <Footer />
     </div>
-
   );
 }
 

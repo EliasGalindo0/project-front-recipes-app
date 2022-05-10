@@ -9,11 +9,24 @@ body {
 
 .ingredient-card {
   align-content: center;
-  border: solid black 2px;
-  border-radius: 25px;
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  min-width: 30%;
-  padding: 10px;
   text-align: center;
+}
+
+.ingredient {
+  margin: 10px;
+  width: 30%;
+}
+
+.link-to-ingredient {
+  color: #f2a922;
+  text-decoration: none;
+}
+
+.link-to-ingredient :hover {
+  color: #f2a922;
+  cursor: pointer;
+  text-decoration: none;
 }
