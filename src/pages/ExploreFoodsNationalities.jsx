@@ -61,7 +61,7 @@ function ExploreFoodsNationalities() {
 
   return (
     <>
-      <Header showIcon={ false } titleHeader="Explore by nationality" />
+      <Header showIcon titleHeader="Explore Nationalities" />
       <select
         data-testid="explore-by-nationality-dropdown"
         defaultValue="All"

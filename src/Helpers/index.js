@@ -72,7 +72,6 @@ export const deleteLocalFav = (param) => {
 };
 
 export const localDoneRecipes = (param, param2) => {
-  // localStorage.setItem('doneRecipes', JSON.stringify(foodDetail));
   const local = localStorage.getItem('doneRecipes');
   if (local && local.includes(param)) {
     param2(true);

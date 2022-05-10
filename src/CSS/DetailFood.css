@@ -28,7 +28,7 @@
   display: inline-block;
   height: 240px;
   margin: 0 10px;
-  margin-left: 1px;
+  margin-left: 0;
   position: relative;
   width: 155px;
 }
@@ -65,7 +65,7 @@
 }
 
 .start-recipe-btn {
-  bottom: 1px;
+  bottom: 0;
   position: fixed;
 }
 
