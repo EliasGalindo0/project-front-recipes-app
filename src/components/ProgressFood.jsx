@@ -28,13 +28,14 @@ function ProgressFood() {
   const id = pathname.split('/');
 
   const fetchFood = useCallback(async () => {
-    const URL = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id[2]}`;
+    const ids = window.location.pathname.split('/');
+    const URL = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${ids[2]}`;
     const response = await fetch(URL);
     const data = await response.json();
     const { meals } = data;
     setFoodProgress(meals[0]);
     setFoodDetail(data);
-  }, [id]);
+  }, []);
 
   const foodItem = foodDetail ? foodDetail.meals[0] : [];
   console.log(foodItem);
@@ -50,9 +51,10 @@ function ProgressFood() {
   };
 
   useEffect(() => {
+    const ids = window.location.pathname.split('/');
     fetchFood();
-    btnFavLocal(id[2], setFavStatus);
-  }, [fetchFood, id]);
+    btnFavLocal(ids[2], setFavStatus);
+  }, [fetchFood]);
 
   const renderIngredients = () => {
     const ingredient = Object.entries(foodProgress).filter(([key, values]) => key

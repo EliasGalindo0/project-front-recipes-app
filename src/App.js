@@ -20,6 +20,7 @@ import DetailDrink from './components/DetailDrink';
 import ProgressFood from './components/ProgressFood';
 import ProgressDrink from './components/ProgressDrink';
 import NotFound from './pages/NotFound';
+import GG from './components/GG';
 
 function App() {
   return (
@@ -52,6 +53,12 @@ function App() {
         <Route
           path="/drinks"
           component={ DrinksPage }
+          exact
+        />
+
+        <Route
+          path="/drinks/15997"
+          component={ GG }
           exact
         />
 

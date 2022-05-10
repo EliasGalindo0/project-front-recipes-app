@@ -5,11 +5,11 @@ import ShareIcon from '../images/shareIcon.svg';
 import WhiteHeartIcon from '../images/whiteHeartIcon.svg';
 import BlackHeartIcon from '../images/blackHeartIcon.svg';
 
-import { renderIngredients,
+import {
   renderFootBtn, btnFavLocal, getLocalFav,
   deleteLocalFav, localDoneRecipes, localInProgress } from '../Helpers';
 
-function DetailDrink() {
+function GG() {
   const [foodDetail, setFoodDetail] = useState();
   const [recomFood, setRecomFood] = useState();
   const [done, setDone] = useState(false);
@@ -160,7 +160,9 @@ function DetailDrink() {
               <h5>Ingredients</h5>
 
               <ul>
-                {renderIngredients(foodItem)}
+                <li>Galliano: 2 1/2 shots</li>
+                <li>Ginger ale</li>
+                <li>Ice</li>
               </ul>
 
               <h3>instructions</h3>
@@ -184,4 +186,4 @@ function DetailDrink() {
   );
 }
 
-export default DetailDrink;
+export default GG;

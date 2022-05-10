@@ -64,13 +64,13 @@ function ShowDoneRecipes() {
               </h5>
             ) : undefined }
 
-            <Link to={ `/${item.type}s/${item.id}` }>
-              <h4
-                data-testid={ `${index}-horizontal-name` }
-              >
+            <h4
+              data-testid={ `${index}-horizontal-name` }
+            >
+              <Link to={ `/${item.type}s/${item.id}` }>
                 { item.name }
-              </h4>
-            </Link>
+              </Link>
+            </h4>
 
             <h4
               data-testid={ `${index}-horizontal-done-date` }
