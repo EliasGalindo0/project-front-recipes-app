@@ -52,7 +52,6 @@ export const btnFavLocal = (param, param2) => {
 };
 
 export const getLocalFav = (list) => {
-  console.log(list);
   const local = JSON.parse(localStorage.getItem('favoriteRecipes'));
   if (local) {
     const lista = [...local, list];
