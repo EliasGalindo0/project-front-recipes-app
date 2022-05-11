@@ -60,6 +60,7 @@ function ExploreFoodsIngredients() {
                   data-testid={ `${index}-ingredient-card` }
                 >
                   <img
+                    className="ingredient-img"
                     src={ `https://www.themealdb.com/images/ingredients/${ingredientsList[index].strIngredient}-Small.png` }
                     alt={ ingredient.strIngredient }
                     data-testid={ `${index}-card-img` }
