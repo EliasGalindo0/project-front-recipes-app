@@ -1,0 +1,54 @@
+header {
+  background-color: #3c735f;
+}
+
+.icons {
+  filter: invert(68%) sepia(67%) saturate(630%) hue-rotate(7deg);
+}
+
+h2 {
+  color: #f2cb05;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.searchInput {
+  background-color: transparent;
+  border: 2px solid #f2cb05;
+  border-color: #f2cb05;
+  border-radius: 8px;
+  color: #f2cb05;
+}
+
+input::placeholder {
+  color: #f2cb05;
+}
+
+.searchOption {
+  background: none;
+  border: none;
+  filter: invert(68%) sepia(67%) saturate(630%) hue-rotate(7deg);
+}
+
+.searchContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.radioControl {
+  color: #f2cb05;
+  margin: 0 5px;
+}
+
+.searchBtn {
+  background: none;
+  border: 2px solid #f2cb05;
+  border-radius: 8px;
+  color: #f2cb05;
+  text-emphasis-color: #f2cb05;
+}
