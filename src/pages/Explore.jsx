@@ -7,8 +7,11 @@ function Explore() {
   return (
     <>
       <Header showIcon={ false } titleHeader="Explore" />
-      <ExploreButtons />
-      <Footer />
+      <div className="explore-main">
+        <ExploreButtons />
+        <Footer />
+      </div>
+
     </>
   );
 }

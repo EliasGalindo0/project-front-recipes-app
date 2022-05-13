@@ -1,0 +1,40 @@
+body {
+  background-color: #3c735f;
+}
+
+.explore-btn {
+  background: #f2cb05;
+  border-radius: 25px;
+}
+
+.ingredient-card {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 70px;
+  text-align: center;
+}
+
+.ingredient {
+  color: #f2a922;
+  margin: 20px;
+  width: 30%;
+}
+
+.ingredient-img {
+  background-image: linear-gradient(#3c735f, #f2cb05);
+  border-radius: 30%;
+  height: 130px;
+  width: 130px;
+}
+
+.explore-main {
+  background-image: url(https://thumbs.dreamstime.com/z/colourful-various-herbs-spices-cooking-dark-background-herbs-spices-cooking-dark-background-113655482.jpg);
+  height: 100%;
+}
+
+.container-explore-buttons {
+  text-align: center;
+  height: 100%;
+}

@@ -3,6 +3,7 @@ import { useHistory, Link } from 'react-router-dom';
 import Context from '../Context/Context';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import '../CSS/ExplorePages.css';
 
 function ExploreFoodsIngredients() {
   const { ingredientsList, setIngredientsList,
@@ -39,32 +40,41 @@ function ExploreFoodsIngredients() {
   return (
     <div>
       <Header showIcon={ false } titleHeader="Explore Ingredients" />
-      { ingredientsList ? (
-        ingredientsList.map((ingredient, index) => (
-          <Link
-            to="/foods"
-            key={ ingredient.idIngredient }
-            onClick={ () => {
-              setNewFilter(ingredient.strIngredient);
-            } }
-          >
+      <div
+        className="ingredient-card"
+      >
+        { ingredientsList ? (
+          ingredientsList.map((ingredient, index) => (
             <div
-              data-testid={ `${index}-ingredient-card` }
+              className="ingredient"
+              key={ ingredient.idIngredient }
             >
-              <img
-                src={ `https://www.themealdb.com/images/ingredients/${ingredientsList[index].strIngredient}-Small.png` }
-                alt={ ingredient.strIngredient }
-                data-testid={ `${index}-card-img` }
-              />
+              <Link
+                className="link-to-ingredient"
+                to="/foods"
+                onClick={ () => {
+                  setNewFilter(ingredient.strIngredient);
+                } }
+              >
+                <div
+                  data-testid={ `${index}-ingredient-card` }
+                >
+                  <img
+                    className="ingredient-img"
+                    src={ `https://www.themealdb.com/images/ingredients/${ingredientsList[index].strIngredient}-Small.png` }
+                    alt={ ingredient.strIngredient }
+                    data-testid={ `${index}-card-img` }
+                  />
+                </div>
+              </Link>
               <p data-testid={ `${index}-card-name` }>{ ingredient.strIngredient }</p>
-
             </div>
-          </Link>
-        ))
-      ) : undefined }
+
+          ))
+        ) : undefined }
+      </div>
       <Footer />
     </div>
-
   );
 }
 

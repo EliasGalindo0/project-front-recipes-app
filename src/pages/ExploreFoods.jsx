@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { surpriseMeF } from '../requisitions/recipesData';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import '../CSS/ExplorePages.css';
 
 function ExploreFoods() {
   const history = useHistory();
@@ -16,6 +17,7 @@ function ExploreFoods() {
     <>
       <Header showIcon={ false } titleHeader="Explore Foods" />
       <button
+        className="explore-btn"
         type="button"
         data-testid="explore-by-ingredient"
         onClick={ () => {
@@ -25,6 +27,7 @@ function ExploreFoods() {
         By Ingredient
       </button>
       <button
+        className="explore-btn"
         type="button"
         data-testid="explore-by-nationality"
         onClick={ () => {
@@ -34,6 +37,7 @@ function ExploreFoods() {
         By Nationality
       </button>
       <button
+        className="explore-btn"
         type="button"
         data-testid="explore-surprise"
         onClick={ requisition }
