@@ -36,3 +36,13 @@ body {
   cursor: pointer;
   text-decoration: none;
 }
+
+.explore-main {
+  background-image: url(https://thumbs.dreamstime.com/z/colourful-various-herbs-spices-cooking-dark-background-herbs-spices-cooking-dark-background-113655482.jpg);
+  height: 100%;
+}
+
+.container-explore-buttons {
+  text-align: center;
+  height: 100%;
+}

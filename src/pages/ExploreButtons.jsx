@@ -5,7 +5,7 @@ import '../CSS/ExplorePages.css';
 function ExploreButtons() {
   const history = useHistory();
   return (
-    <>
+    <div className="container-explore-buttons">
       <button
         className="explore-btn"
         type="button"
@@ -26,7 +26,7 @@ function ExploreButtons() {
       >
         Explore Drinks
       </button>
-    </>
+    </div>
   );
 }
 
