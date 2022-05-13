@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Context from '../Context/Context';
+import '../CSS/Login.css';
+import logo from '../images/logo.png';
 
 function Login() {
   const {
@@ -27,33 +29,38 @@ function Login() {
   const validatePassword = () => password.length > num;
 
   return (
-    <>
-      <h1>Login</h1>
-      <form>
-        <input
-          type="email"
-          data-testid="email-input"
-          placeholder="E-mail"
-          onChange={ (e) => setEmail(e.target.value) }
-        />
-        <br />
-        <input
-          type="password"
-          data-testid="password-input"
-          placeholder="Senha"
-          onChange={ (e) => setPassword(e.target.value) }
-        />
-        <br />
-        <button
-          disabled={ !(validateEmail() && validatePassword()) }
-          type="submit"
-          data-testid="login-submit-btn"
-          onClick={ btnEnter }
-        >
-          Enter
-        </button>
-      </form>
-    </>
+    <main className="main-login">
+      <section className="clip" />
+      <section className="section-form">
+        <img src={ logo } alt="logo" className="img-logo" />
+        <h1>Login</h1>
+        <form className="form">
+          <input
+            className="input-login"
+            type="email"
+            data-testid="email-input"
+            placeholder="E-mail"
+            onChange={ (e) => setEmail(e.target.value) }
+          />
+          <input
+            className="input-login"
+            type="password"
+            data-testid="password-input"
+            placeholder="Password"
+            onChange={ (e) => setPassword(e.target.value) }
+          />
+          <button
+            disabled={ !(validateEmail() && validatePassword()) }
+            type="submit"
+            data-testid="login-submit-btn"
+            onClick={ btnEnter }
+            className="btn-login"
+          >
+            Enter
+          </button>
+        </form>
+      </section>
+    </main>
   );
 }
 
