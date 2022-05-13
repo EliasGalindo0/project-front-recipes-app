@@ -8,18 +8,17 @@ body {
 }
 
 .ingredient-card {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   margin-bottom: 70px;
-  margin-left: 200px;
-  margin-right: 200px;
   text-align: center;
 }
 
 .ingredient {
   color: #f2a922;
-  margin: 10px;
+  margin: 20px;
   width: 30%;
 }
 
