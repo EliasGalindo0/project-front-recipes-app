@@ -10,31 +10,24 @@ body {
 .ingredient-card {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin: 20px;
+  justify-content: space-around;
+  margin-bottom: 70px;
+  margin-left: 200px;
+  margin-right: 200px;
   text-align: center;
 }
 
 .ingredient {
+  color: #f2a922;
   margin: 10px;
   width: 30%;
 }
 
 .ingredient-img {
   background-image: linear-gradient(#3c735f, #f2cb05);
-  border-radius: 50%;
-  size: 100px;
-}
-
-.link-to-ingredient {
-  color: #f2a922;
-  text-decoration: none;
-}
-
-.link-to-ingredient :hover {
-  color: #f2a922;
-  cursor: pointer;
-  text-decoration: none;
+  border-radius: 30%;
+  height: 130px;
+  width: 130px;
 }
 
 .explore-main {

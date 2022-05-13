@@ -65,10 +65,9 @@ function ExploreFoodsIngredients() {
                     alt={ ingredient.strIngredient }
                     data-testid={ `${index}-card-img` }
                   />
-                  <p data-testid={ `${index}-card-name` }>{ ingredient.strIngredient }</p>
-
                 </div>
               </Link>
+              <p data-testid={ `${index}-card-name` }>{ ingredient.strIngredient }</p>
             </div>
 
           ))
