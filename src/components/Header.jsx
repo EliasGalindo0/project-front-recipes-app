@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import Context from '../Context/Context';
+import '../CSS/Header.css';
 
 function Header({ showIcon, titleHeader }) {
   const [search, setSearch] = useState(false);
@@ -80,11 +81,12 @@ function Header({ showIcon, titleHeader }) {
   };
 
   return (
-    <header>
+    <header className="container">
       <Link
         to="/profile"
       >
         <img
+          className="icons"
           data-testid="profile-top-btn"
           src={ profileIcon }
           alt="ícone"
@@ -95,6 +97,7 @@ function Header({ showIcon, titleHeader }) {
 
       { showIcon ? (
         <button
+          className="searchOption"
           type="button"
           onClick={ () => { setSearch((a) => !a); } }
         >
@@ -107,8 +110,9 @@ function Header({ showIcon, titleHeader }) {
       ) : undefined }
 
       { search ? (
-        <div>
+        <div className="searchContainer">
           <input
+            className="searchInput"
             data-testid="search-input"
             type="text"
             placeholder="Search Recipe"
@@ -116,7 +120,7 @@ function Header({ showIcon, titleHeader }) {
           />
 
           <div>
-            <label htmlFor="ingredient">
+            <label htmlFor="ingredient" className="radioControl">
               <input
                 type="radio"
                 name="Conditional"
@@ -127,7 +131,7 @@ function Header({ showIcon, titleHeader }) {
               Ingredient
             </label>
 
-            <label htmlFor="name">
+            <label htmlFor="name" className="radioControl">
               <input
                 type="radio"
                 name="Conditional"
@@ -138,7 +142,7 @@ function Header({ showIcon, titleHeader }) {
               Name
             </label>
 
-            <label htmlFor="firstLetter">
+            <label htmlFor="firstLetter" className="radioControl">
               <input
                 type="radio"
                 name="Conditional"
@@ -151,6 +155,7 @@ function Header({ showIcon, titleHeader }) {
           </div>
 
           <button
+            className="searchBtn"
             data-testid="exec-search-btn"
             type="button"
             onClick={ searchBtn }
